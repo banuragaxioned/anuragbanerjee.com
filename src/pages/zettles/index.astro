@@ -1,0 +1,30 @@
+---
+import { getCollection } from "astro:content";
+
+// 1. Get all zettles
+const allZettles = await getCollection("zettles");
+
+// 2. You might want to sort them by date, if you have a date field
+allZettles.sort((a, b) => (a.data.date > b.data.date ? -1 : 1));
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Zettles</title>
+  </head>
+  <body>
+    <h1>All Zettles</h1>
+    <ul>
+      {
+        allZettles.map((zettle) => (
+          <li>
+            <a href={`/zettles/${zettle.slug}/`}>{zettle.data.title}</a>
+            {zettle.data.excerpt && <p>{zettle.data.excerpt}</p>}
+          </li>
+        ))
+      }
+    </ul>
+  </body>
+</html>

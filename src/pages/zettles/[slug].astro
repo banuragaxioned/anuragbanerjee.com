@@ -1,0 +1,28 @@
+---
+import { getCollection } from "astro:content";
+
+const { slug } = Astro.params;
+
+// 1. Filter to find the zettle that matches the route slug
+const entries = await getCollection("zettles", ({ slug: entrySlug }) => entrySlug === slug);
+
+// 2. If none found, throw an error or show a 404
+if (entries.length === 0) {
+  throw new Error(`No zettle found for slug: ${slug}`);
+}
+
+// 3. Grab the first (only) entry
+const zettle = entries[0];
+---
+
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>{zettle.data.title}</title>
+  </head>
+  <body>
+    <h1>{zettle.data.title}</h1>
+    <!-- Render the Markdown body -->
+    {zettle.body}
+  </body>
+</html>
