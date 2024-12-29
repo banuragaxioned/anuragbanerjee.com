@@ -12,7 +12,6 @@ import react from "@astrojs/react";
 // https://astro.build/config
 export default defineConfig({
   site: "https://anuragbanerjee.com",
-  output: "static",
   adapter: cloudflare({
     platformProxy: {
       enabled: true,
