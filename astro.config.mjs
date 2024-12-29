@@ -3,7 +3,6 @@ import { defineConfig } from "astro/config";
 import cloudflare from "@astrojs/cloudflare";
 import tailwind from "@astrojs/tailwind";
 import sitemap from "@astrojs/sitemap";
-import react from "@astrojs/react";
 
 // https://astro.build/config
 export default defineConfig({
@@ -13,10 +12,5 @@ export default defineConfig({
       enabled: true,
     },
   }),
-  vite: {
-    optimizeDeps: {
-      exclude: ["react-compiler-runtime"],
-    },
-  },
-  integrations: [tailwind({ applyBaseStyles: false }), sitemap(), react()],
+  integrations: [tailwind({ applyBaseStyles: false }), sitemap()],
 });
