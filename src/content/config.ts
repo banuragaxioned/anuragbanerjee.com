@@ -6,7 +6,7 @@ const zettlesCollection = defineCollection({
   schema: z.object({
     title: z.string().min(1, "Title is required"),
     excerpt: z.string().optional(),
-    date: z.string().optional(),
+    date: z.date().optional(),
   }),
 });
 
