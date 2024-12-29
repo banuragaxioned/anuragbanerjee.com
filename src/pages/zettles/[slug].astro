@@ -11,6 +11,8 @@ export async function getStaticPaths() {
 }
 
 const { zettle } = Astro.props;
+
+export const prerender = true;
 ---
 
 <Layout>
