@@ -1,28 +1,22 @@
 ---
 import { getCollection } from "astro:content";
+import Layout from "../../layouts/Layout.astro";
 
-const { slug } = Astro.params;
-
-// 1. Filter to find the zettle that matches the route slug
-const entries = await getCollection("zettles", ({ slug: entrySlug }) => entrySlug === slug);
-
-// 2. If none found, throw an error or show a 404
-if (entries.length === 0) {
-  throw new Error(`No zettle found for slug: ${slug}`);
+export async function getStaticPaths() {
+  const zettles = await getCollection("zettles");
+  return zettles.map((zettle) => ({
+    params: { slug: zettle.id },
+    props: { zettle },
+  }));
 }
 
-// 3. Grab the first (only) entry
-const zettle = entries[0];
+const { zettle } = Astro.props;
 ---
 
-<html>
-  <head>
-    <meta charset="UTF-8" />
-    <title>{zettle.data.title}</title>
-  </head>
+<Layout>
+  <title>{zettle.data.title}</title>
   <body>
     <h1>{zettle.data.title}</h1>
-    <!-- Render the Markdown body -->
     {zettle.body}
   </body>
-</html>
+</Layout>

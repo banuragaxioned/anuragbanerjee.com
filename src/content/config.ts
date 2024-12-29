@@ -1,15 +1,15 @@
-import { z, defineCollection } from "astro:content";
+import { defineCollection, z } from "astro:content";
+import { glob, file } from "astro/loaders"; // Not available with legacy API
 
 const zettlesCollection = defineCollection({
-  // Schema for your frontmatter
+  loader: glob({ pattern: "**/*.md", base: "./src/content/zettles" }),
   schema: z.object({
     title: z.string().min(1, "Title is required"),
     excerpt: z.string().optional(),
-    date: z.string().optional(), // or z.date().optional()
+    date: z.string().optional(),
   }),
 });
 
 export const collections = {
-  // Export the collection under the name "zettles"
   zettles: zettlesCollection,
 };
