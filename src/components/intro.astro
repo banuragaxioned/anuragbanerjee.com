@@ -1,0 +1,38 @@
+---
+import { cn } from "@/lib/utils";
+import { Button, buttonVariants } from "./ui/button";
+---
+
+<main class="min-h-screen flex justify-center items-center p-8">
+  <section class="max-w-2xl text-center">
+    <h1 class="text-5xl font-bold py-2">Anurag Banerjee</h1>
+
+    <p class="text-xl mt-4 mb-8">
+      Tech Enthusiast, Liverpool FC supporter. I post random things. All views
+      are my own. 🇮🇳. 🗺️. 🎧. ⚽. 🍛🍕🍳🍔.
+    </p>
+
+    <section class="flex flex-col sm:flex-row gap-4 justify-center mt-8">
+      <a
+        href="https://anuragbanerjee.com"
+        target="_blank"
+        class={cn(buttonVariants({ variant: "default" }))}>Blog</a
+      >
+      <a
+        href="https://github.com/banuragaxioned"
+        target="_blank"
+        class={cn(buttonVariants({ variant: "default" }))}>GitHub</a
+      >
+      <a
+        href="https://linkedin.com/in/imanuragbanerjee"
+        target="_blank"
+        class={cn(buttonVariants({ variant: "default" }))}>LinkedIn</a
+      >
+      <a
+        href="mailto:hey@anuragbanerjee.com"
+        target="_blank"
+        class={cn(buttonVariants({ variant: "default" }))}>Contact</a
+      >
+    </section>
+  </section>
+</main>
