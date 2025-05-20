@@ -1,0 +1,20 @@
+---
+import { getCollection } from "astro:content";
+import Layout from "@/layouts/Layout.astro";
+const posts = await getCollection("posts");
+---
+
+<Layout>
+  <h1>All Posts</h1>
+  <ul>
+    {
+      posts.map((post) => (
+        <li>
+          <a href={`/posts/${post.id}/`}>{post.data.title}</a>
+          <date>{new Date(post.data.date).toLocaleDateString()}</date>
+          {post.data.excerpt && <p>{post.data.excerpt}</p>}
+        </li>
+      ))
+    }
+  </ul>
+</Layout>
