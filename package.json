@@ -12,35 +12,37 @@
     "preview": "astro build && wrangler pages dev"
   },
   "dependencies": {
-    "@astrojs/cloudflare": "^12.2.4",
-    "@astrojs/react": "^4.2.1",
-    "@astrojs/sitemap": "^3.2.1",
-    "@fontsource-variable/geist-mono": "^5.2.5",
+    "@astrojs/cloudflare": "^12.5.3",
+    "@astrojs/react": "^4.2.7",
+    "@astrojs/sitemap": "^3.4.0",
+    "@fontsource-variable/geist-mono": "^5.2.6",
     "@fontsource/geist-sans": "^5.2.5",
-    "@radix-ui/react-slot": "^1.1.2",
-    "@tailwindcss/vite": "^4.0.14",
-    "@types/react": "^19.0.10",
-    "@types/react-dom": "^19.0.4",
-    "astro": "^5.5.2",
+    "@radix-ui/react-slot": "^1.2.3",
+    "@tailwindcss/vite": "^4.1.7",
+    "@types/react": "^19.1.4",
+    "@types/react-dom": "^19.1.5",
+    "astro": "^5.7.13",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
-    "lucide-react": "^0.482.0",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0",
-    "tailwind-merge": "^3.0.2",
-    "tailwindcss": "^4.0.14",
+    "lucide-react": "^0.511.0",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "tailwind-merge": "^3.3.0",
+    "tailwindcss": "^4.1.7",
     "tailwindcss-animate": "^1.0.7"
   },
   "devDependencies": {
-    "@cloudflare/workers-types": "^4.20250313.0",
+    "@cloudflare/workers-types": "^4.20250520.0",
     "prettier": "^3.5.3",
     "prettier-plugin-astro": "^0.14.1",
-    "wrangler": "^4.0.0"
+    "wrangler": "^4.16.0"
   },
   "packageManager": "pnpm@10.6.3",
   "pnpm": {
     "onlyBuiltDependencies": [
+      "@tailwindcss/oxide",
       "esbuild",
+      "sharp",
       "workerd"
     ]
   }
