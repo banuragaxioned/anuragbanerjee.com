@@ -13,10 +13,13 @@ import { Button, buttonVariants } from "./ui/button";
     </p>
 
     <section class="flex flex-col sm:flex-row gap-4 justify-center mt-8">
+      <a href="/posts" class={cn(buttonVariants({ variant: "default" }))}
+        >Blog</a
+      >
       <a
-        href="https://anuragbanerjee.com"
+        href="https://x.com/ianuragbanerjee"
         target="_blank"
-        class={cn(buttonVariants({ variant: "default" }))}>Blog</a
+        class={cn(buttonVariants({ variant: "default" }))}>X</a
       >
       <a
         href="https://github.com/banuragaxioned"
@@ -28,11 +31,12 @@ import { Button, buttonVariants } from "./ui/button";
         target="_blank"
         class={cn(buttonVariants({ variant: "default" }))}>LinkedIn</a
       >
-      <a
-        href="mailto:hey@anuragbanerjee.com"
-        target="_blank"
-        class={cn(buttonVariants({ variant: "default" }))}>Contact</a
+      <a href="/zettles" class={cn(buttonVariants({ variant: "default" }))}
+        >Zettles</a
       >
+      <!-- <a href="/weeknotes" class={cn(buttonVariants({ variant: "default" }))}
+        >Weeknotes</a
+      > -->
     </section>
   </section>
 </main>
