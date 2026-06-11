@@ -1,0 +1,251 @@
+---
+import Layout from "@/layouts/layout.astro";
+import { Badge } from "@/components/ui/badge";
+import { Separator } from "@/components/ui/separator";
+
+const strengths = [
+  "Technical Leadership",
+  "Engineering Management",
+  "Agile Project Management",
+];
+
+const experience = [
+  {
+    company: "Axioned",
+    location: "Thane, India",
+    roles: [
+      {
+        title: "Chief Operating Officer",
+        period: "Aug 2018 – Present",
+        points: [
+          "Overseeing the Engineering, Project Management, Design, and Quality Assurance teams.",
+          "Working with the management team to oversee and support critical business metrics.",
+          "Working with the CEO on existing and new client relationships, and on the strategy for client services.",
+          "Supporting hiring and retention decisions with management and HR, and resource management with the PM team and tech leads.",
+        ],
+      },
+      {
+        title: "Project Manager",
+        period: "Mar 2017 – Aug 2018",
+        points: [
+          "Developed and delivered the project management program — planning, goal-setting, and progress evaluation across teams.",
+          "Coached team members on every aspect of a project, and ran the internal communications strategy across all levels of management.",
+          "Owned detailed project planning and control: deliverables, scope and change control, issue tracking, and escalation.",
+        ],
+      },
+    ],
+  },
+  {
+    company: "The Red Legions",
+    location: "Mumbai, India",
+    roles: [
+      {
+        title: "Co-founder, Editor in Chief",
+        period: "Apr 2009 – Dec 2016",
+        points: [],
+      },
+    ],
+  },
+  {
+    company: "Packt Publishing",
+    location: "Mumbai, India",
+    roles: [
+      {
+        title: "Acquisition Manager",
+        period: "Jun 2015 – Jul 2016",
+        points: [
+          "Oversaw discovery, engagement, and recruitment of authors for digital, print, and video products.",
+          "Managed a team of editors delivering high-quality manuscripts, and designed new editorial and publication workflows.",
+          "Contributed to overall publishing strategy based on market analysis and customer needs.",
+        ],
+      },
+      {
+        title: "Project Manager – Publishing",
+        period: "Apr 2014 – May 2015",
+        points: [],
+      },
+      {
+        title: "Commissioning Selection Executive",
+        period: "Jun 2013 – Apr 2014",
+        points: [
+          "Evaluated book and video proposals — validating scope, vision, and catalog fit for commissioning editors.",
+        ],
+      },
+      {
+        title: "Project Coordinator",
+        period: "Aug 2012 – Jun 2013",
+        points: [
+          "Helped the editorial team meet deadlines by ensuring smooth, timely flow of work between editorial stages.",
+        ],
+      },
+      {
+        title: "Customer Relations Administrator",
+        period: "May 2012 – Aug 2012",
+        points: [],
+      },
+    ],
+  },
+  {
+    company: "Tata Consultancy Services",
+    location: "Mumbai, India",
+    roles: [
+      {
+        title: "Information Processing Specialist",
+        period: "Aug 2011 – Apr 2012",
+        points: [
+          "Carried out client data validations with a focus on operational excellence, computing results against defined guidelines.",
+        ],
+      },
+    ],
+  },
+];
+
+const education = [
+  {
+    school: "Sikkim Manipal University",
+    detail: "MBA, Information Systems Management · 2014 – 2016",
+  },
+  {
+    school: "S.K. Somaiya College of Arts, Science and Commerce",
+    detail: "Bachelor of Commerce · 2008 – 2011",
+  },
+  {
+    school: "Kendriya Vidyalaya, IIT Powai",
+    detail: "AISSCE (HSC/12th), Commerce · 2006 – 2008",
+  },
+  {
+    school: "Kendriya Vidyalaya, Bhandup",
+    detail: "AISSE (SSC/10th) · 2003 – 2006",
+  },
+];
+
+const certifications = [
+  "CBT Practitioner",
+  "Project Governance and PMO",
+  "Certificate in Information Technology",
+  "React Foundations for Next.js",
+  "Next.js App Router Fundamentals",
+];
+
+const languages = [
+  "English (full professional)",
+  "German (elementary)",
+  "Hindi (limited working)",
+  "Bengali (limited working)",
+];
+---
+
+<Layout
+  title="Resume"
+  description="Resume of Anurag Banerjee — Chief Operating Officer at Axioned."
+>
+  <section>
+    <h1 class="text-3xl font-semibold tracking-tight">Resume</h1>
+    <p class="mt-4">Chief Operating Officer at Axioned · Mumbai, India</p>
+    <p class="text-muted-foreground mt-2">
+      Experienced project manager with a demonstrated history in the IT and
+      services industry. Strong product and project management skills, with an
+      MBA. For the longer story, find me on
+      <a
+        href="https://linkedin.com/in/imanuragbanerjee"
+        target="_blank"
+        class="underline underline-offset-4">LinkedIn</a
+      >.
+    </p>
+  </section>
+
+  <section class="mt-12">
+    <h2
+      class="text-muted-foreground text-sm font-medium tracking-wide uppercase"
+    >
+      Core strengths
+    </h2>
+    <div class="mt-4 flex flex-wrap gap-2">
+      {
+        strengths.map((strength) => (
+          <Badge variant="secondary">{strength}</Badge>
+        ))
+      }
+    </div>
+  </section>
+
+  <section class="mt-12">
+    <h2
+      class="text-muted-foreground text-sm font-medium tracking-wide uppercase"
+    >
+      Experience
+    </h2>
+    <ul class="mt-6">
+      {
+        experience.map((entry, index) => (
+          <li>
+            {index > 0 && <Separator className="my-8" />}
+            <div class="flex flex-wrap items-baseline justify-between gap-x-4">
+              <h3 class="font-semibold">{entry.company}</h3>
+              <span class="text-muted-foreground text-sm">
+                {entry.location}
+              </span>
+            </div>
+            <ul class="mt-3 flex flex-col gap-4">
+              {entry.roles.map((role) => (
+                <li>
+                  <div class="flex flex-wrap items-baseline justify-between gap-x-4">
+                    <h4 class="font-medium">{role.title}</h4>
+                    <span class="text-muted-foreground text-sm">
+                      {role.period}
+                    </span>
+                  </div>
+                  {role.points.length > 0 && (
+                    <ul class="text-muted-foreground mt-2 list-disc pl-5 text-sm">
+                      {role.points.map((point) => (
+                        <li>{point}</li>
+                      ))}
+                    </ul>
+                  )}
+                </li>
+              ))}
+            </ul>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+
+  <section class="mt-12">
+    <h2
+      class="text-muted-foreground text-sm font-medium tracking-wide uppercase"
+    >
+      Education
+    </h2>
+    <ul class="mt-6 flex flex-col gap-3">
+      {
+        education.map((entry) => (
+          <li class="flex flex-wrap items-baseline justify-between gap-x-4">
+            <h3 class="font-medium">{entry.school}</h3>
+            <span class="text-muted-foreground text-sm">{entry.detail}</span>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+
+  <section class="mt-12">
+    <h2
+      class="text-muted-foreground text-sm font-medium tracking-wide uppercase"
+    >
+      Certifications
+    </h2>
+    <div class="mt-4 flex flex-wrap gap-2">
+      {certifications.map((cert) => <Badge variant="outline">{cert}</Badge>)}
+    </div>
+  </section>
+
+  <section class="mt-12">
+    <h2
+      class="text-muted-foreground text-sm font-medium tracking-wide uppercase"
+    >
+      Languages
+    </h2>
+    <p class="text-muted-foreground mt-4 text-sm">{languages.join(" · ")}</p>
+  </section>
+</Layout>

@@ -1,0 +1,152 @@
+---
+import "@/styles/global.css";
+import { buttonVariants } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
+
+interface Props {
+  title?: string;
+  description?: string;
+  /** og:type — "article" for posts/weeknotes/zettles */
+  type?: "website" | "article";
+  /** ISO date for article:published_time */
+  publishedTime?: string;
+  /** URL of the markdown version of this page, for agents */
+  markdownUrl?: string;
+  /** JSON-LD object(s) rendered into the head */
+  schema?: Record<string, unknown> | Record<string, unknown>[];
+}
+
+const {
+  title,
+  description = "Personal site of Anurag Banerjee — posts, weeknotes, and zettles.",
+  type = "website",
+  publishedTime,
+  markdownUrl,
+  schema,
+} = Astro.props;
+
+const pageTitle = title ? `${title} · Anurag Banerjee` : "Anurag Banerjee";
+const year = new Date().getFullYear();
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
+const ogImage = new URL("og.png", Astro.site);
+
+const navLinks = [
+  { href: "/posts", label: "Posts" },
+  { href: "/weeknotes", label: "Weeknotes" },
+  { href: "/zettles", label: "Zettles" },
+  { href: "/resume", label: "Resume" },
+];
+
+const socialLinks = [
+  { href: "https://x.com/ianuragbanerjee", label: "X" },
+  { href: "https://github.com/banuragaxioned", label: "GitHub" },
+  { href: "https://linkedin.com/in/imanuragbanerjee", label: "LinkedIn" },
+  { href: "https://www.instagram.com/imanuragbanerjee", label: "Instagram" },
+];
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalUrl} />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <link
+      rel="alternate"
+      type="application/rss+xml"
+      title="Anurag Banerjee"
+      href={new URL("rss.xml", Astro.site)}
+    />
+    {
+      markdownUrl && (
+        <link
+          rel="alternate"
+          type="text/markdown"
+          title={`${pageTitle} (Markdown)`}
+          href={new URL(markdownUrl, Astro.site)}
+        />
+      )
+    }
+    <title>{pageTitle}</title>
+
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content={type} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:site_name" content="Anurag Banerjee" />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    {
+      type === "article" && publishedTime && (
+        <meta property="article:published_time" content={publishedTime} />
+      )
+    }
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@ianuragbanerjee" />
+    <meta name="twitter:creator" content="@ianuragbanerjee" />
+    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+
+    {
+      schema && (
+        <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+      )
+    }
+    <script is:inline>
+      const darkQuery = window.matchMedia("(prefers-color-scheme: dark)");
+      const applyTheme = () =>
+        document.documentElement.classList.toggle("dark", darkQuery.matches);
+      applyTheme();
+      darkQuery.addEventListener("change", applyTheme);
+    </script>
+  </head>
+  <body class="antialiased">
+    <div class="mx-auto flex min-h-screen max-w-2xl flex-col px-6 py-10">
+      <header class="mb-12 flex flex-wrap items-center justify-between gap-4">
+        <a href="/" class="font-semibold tracking-tight">Anurag Banerjee</a>
+        <nav class="-mr-2.5 flex">
+          {
+            navLinks.map((link) => (
+              <a
+                href={link.href}
+                class={cn(
+                  buttonVariants({ variant: "ghost", size: "sm" }),
+                  "text-muted-foreground",
+                )}
+              >
+                {link.label}
+              </a>
+            ))
+          }
+        </nav>
+      </header>
+
+      <main class="flex-1">
+        <slot />
+      </main>
+
+      <footer
+        class="text-muted-foreground mt-16 flex flex-wrap items-baseline justify-between gap-4 border-t pt-6 text-sm"
+      >
+        <p>© {year} Anurag Banerjee</p>
+        <nav class="hover:*:text-foreground flex gap-4 *:transition-colors">
+          {
+            socialLinks.map((link) => (
+              <a href={link.href} target="_blank" rel="me">
+                {link.label}
+              </a>
+            ))
+          }
+          <a href="/rss.xml">RSS</a>
+        </nav>
+      </footer>
+    </div>
+  </body>
+</html>

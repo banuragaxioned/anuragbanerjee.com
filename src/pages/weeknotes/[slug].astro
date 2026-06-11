@@ -1,0 +1,74 @@
+---
+import { getCollection, render } from "astro:content";
+import Layout from "@/layouts/layout.astro";
+import { Badge } from "@/components/ui/badge";
+import { Separator } from "@/components/ui/separator";
+
+export async function getStaticPaths() {
+  const weeknotes = await getCollection("weeknotes");
+  return weeknotes.map((note) => ({
+    params: { slug: note.id },
+    props: { note },
+  }));
+}
+
+const { note } = Astro.props;
+const { Content } = await render(note);
+
+const formattedDate = note.data.date.toLocaleDateString("en-US", {
+  year: "numeric",
+  month: "long",
+  day: "numeric",
+});
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  headline: note.data.title,
+  description: note.data.excerpt,
+  datePublished: note.data.date.toISOString(),
+  author: {
+    "@type": "Person",
+    name: "Anurag Banerjee",
+    url: "https://anuragbanerjee.com/",
+  },
+  url: `https://anuragbanerjee.com/weeknotes/${note.id}/`,
+};
+---
+
+<Layout
+  title={note.data.title}
+  description={note.data.excerpt}
+  type="article"
+  publishedTime={note.data.date.toISOString()}
+  markdownUrl={`/weeknotes/${note.id}.md`}
+  schema={schema}
+>
+  <article>
+    <header class="mb-10">
+      <h1 class="text-3xl font-semibold tracking-tight text-balance">
+        {note.data.title}
+      </h1>
+      <Badge variant="secondary" className="mt-4">
+        <time datetime={note.data.date.toISOString()}>{formattedDate}</time>
+      </Badge>
+    </header>
+    <div class="prose prose-neutral dark:prose-invert max-w-none">
+      <Content />
+    </div>
+    {
+      note.data.canonical && (
+        <>
+          <Separator className="mt-10" />
+          <p class="text-muted-foreground mt-6 text-sm">
+            Originally published on{" "}
+            <a href={note.data.canonical} class="underline" target="_blank">
+              Medium
+            </a>
+            .
+          </p>
+        </>
+      )
+    }
+  </article>
+</Layout>

@@ -1,9 +1,219 @@
 ---
-import Intro from "../components/intro.astro";
-import Layout from "../layouts/Layout.astro";
-import "@/styles/global.css";
+import { getCollection } from "astro:content";
+import Layout from "@/layouts/layout.astro";
+import { buttonVariants } from "@/components/ui/button";
+import {
+  Card,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+
+const posts = (await getCollection("posts"))
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+  .slice(0, 3);
+
+const formatDate = (date: Date) =>
+  date.toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
+
+const days = [
+  {
+    title: "Tech",
+    description:
+      "Technical direction across client builds — architecture choices, build-vs-buy calls, code quality, and keeping the stack current.",
+  },
+  {
+    title: "Teams",
+    description:
+      "Leading the engineering, project management, design, and QA teams — and the resource planning that keeps them sane.",
+  },
+  {
+    title: "Clients",
+    description:
+      "Working with the CEO on client relationships and the strategy behind client services.",
+  },
+  {
+    title: "People",
+    description:
+      "Hiring, retention, coaching, and the internal communication that holds it all together.",
+  },
+];
+
+// contact happens via socials — no email on purpose
+const socialLinks = [
+  { href: "https://x.com/ianuragbanerjee", label: "X" },
+  { href: "https://github.com/banuragaxioned", label: "GitHub" },
+  { href: "https://linkedin.com/in/imanuragbanerjee", label: "LinkedIn" },
+  { href: "https://www.instagram.com/imanuragbanerjee", label: "Instagram" },
+];
+
+// GitHub is a profile, not a contact channel
+const contactLinks = socialLinks.filter((link) => link.label !== "GitHub");
+
+const schema = [
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    name: "Anurag Banerjee",
+    url: "https://anuragbanerjee.com/",
+    jobTitle: "Chief Operating Officer",
+    worksFor: {
+      "@type": "Organization",
+      name: "Axioned",
+      url: "https://axioned.com/",
+    },
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: "Mumbai",
+      addressCountry: "IN",
+    },
+    alumniOf: "Sikkim Manipal University",
+    sameAs: socialLinks.map((link) => link.href),
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: "Anurag Banerjee",
+    url: "https://anuragbanerjee.com/",
+    author: { "@type": "Person", name: "Anurag Banerjee" },
+  },
+];
 ---
 
-<Layout>
-  <Intro />
+<Layout schema={schema} markdownUrl="/index.md">
+  <section>
+    <p
+      class="text-muted-foreground text-sm font-medium tracking-wide uppercase"
+    >
+      Chief Operating Officer at Axioned
+    </p>
+    <h1 class="mt-3 text-4xl font-semibold tracking-tight text-balance">
+      Driven by tinkering, experiments, and good tech.
+    </h1>
+    <p class="text-muted-foreground mt-6">
+      I'm Anurag Banerjee. I run operations at
+      <a
+        href="https://axioned.com"
+        target="_blank"
+        class="underline underline-offset-4">Axioned</a
+      >, a digital agency in Mumbai — overseeing the engineering, project
+      management, design, and QA teams that ship client work every week.
+    </p>
+    <p class="text-muted-foreground mt-4">
+      The rest of the time I'm tinkering — rebuilding this site, trying new
+      tools, and poking at whatever's new in tech.
+    </p>
+    <div class="mt-8 flex flex-wrap gap-3">
+      <a href="/posts" class={buttonVariants({ variant: "default" })}
+        >Read the blog</a
+      >
+      <a href="/resume" class={buttonVariants({ variant: "outline" })}
+        >See my resume</a
+      >
+    </div>
+  </section>
+
+  <section class="mt-16">
+    <h2
+      class="text-muted-foreground text-sm font-medium tracking-wide uppercase"
+    >
+      What I spend my days on
+    </h2>
+    <div class="mt-6 grid gap-4 sm:grid-cols-2">
+      {
+        days.map((item) => (
+          <Card>
+            <CardHeader>
+              <CardTitle>{item.title}</CardTitle>
+              <CardDescription>{item.description}</CardDescription>
+            </CardHeader>
+          </Card>
+        ))
+      }
+    </div>
+  </section>
+
+  <section class="mt-16">
+    <div class="flex items-baseline justify-between">
+      <h2
+        class="text-muted-foreground text-sm font-medium tracking-wide uppercase"
+      >
+        Latest writing
+      </h2>
+      <a
+        href="/posts"
+        class="text-muted-foreground hover:text-foreground text-sm transition-colors"
+        >All posts →</a
+      >
+    </div>
+    <ul class="mt-6 flex flex-col gap-6">
+      {
+        posts.map((post) => (
+          <li>
+            <time
+              datetime={post.data.date.toISOString()}
+              class="text-muted-foreground text-sm"
+            >
+              {formatDate(post.data.date)}
+            </time>
+            <a href={`/posts/${post.id}/`} class="group mt-1 block">
+              <h3 class="font-medium group-hover:underline">
+                {post.data.title}
+              </h3>
+              <p class="text-muted-foreground mt-1 text-sm">
+                {post.data.excerpt}
+              </p>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+
+  <section class="mt-16">
+    <h2
+      class="text-muted-foreground text-sm font-medium tracking-wide uppercase"
+    >
+      Beyond work
+    </h2>
+    <p class="text-muted-foreground mt-4">
+      Liverpool FC supporter — I co-founded and ran
+      <span class="text-foreground">The Red Legions</span>, an LFC fan site, for
+      seven years. I travel solo when I can, keep a public notebook of
+      <a href="/weeknotes" class="underline underline-offset-4">weeknotes</a>
+      and
+      <a href="/zettles" class="underline underline-offset-4">zettles</a>, and
+      post random things. All views are my own. 🇮🇳 🗺️ 🎧 ⚽ 🍛🍕🍳🍔
+    </p>
+  </section>
+
+  <section class="mt-16">
+    <h2
+      class="text-muted-foreground text-sm font-medium tracking-wide uppercase"
+    >
+      Get in touch
+    </h2>
+    <p class="text-muted-foreground mt-4">
+      No forms, no inbox. The fastest way to reach me is a message on any of
+      these:
+    </p>
+    <div class="mt-6 flex flex-wrap gap-3">
+      {
+        contactLinks.map((link) => (
+          <a
+            href={link.href}
+            target="_blank"
+            rel="me"
+            class={buttonVariants({ variant: "outline", size: "sm" })}
+          >
+            {link.label}
+          </a>
+        ))
+      }
+    </div>
+  </section>
 </Layout>

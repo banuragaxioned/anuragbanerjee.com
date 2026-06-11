@@ -1,0 +1,49 @@
+---
+import { Separator } from "@/components/ui/separator";
+
+interface Entry {
+  href: string;
+  title: string;
+  date?: Date;
+  excerpt?: string;
+}
+
+interface Props {
+  entries: Entry[];
+}
+
+const { entries } = Astro.props;
+
+const formatDate = (date: Date) =>
+  date.toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+  });
+---
+
+<ul>
+  {
+    entries.map((entry, index) => (
+      <li>
+        {index > 0 && <Separator className="my-6" />}
+        <a href={entry.href} class="group block">
+          <div class="flex flex-wrap items-baseline justify-between gap-x-4">
+            <h2 class="font-medium group-hover:underline">{entry.title}</h2>
+            {entry.date && (
+              <time
+                datetime={entry.date.toISOString()}
+                class="text-muted-foreground text-sm"
+              >
+                {formatDate(entry.date)}
+              </time>
+            )}
+          </div>
+          {entry.excerpt && (
+            <p class="text-muted-foreground mt-1 text-sm">{entry.excerpt}</p>
+          )}
+        </a>
+      </li>
+    ))
+  }
+</ul>
