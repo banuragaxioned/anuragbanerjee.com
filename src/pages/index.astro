@@ -1,13 +1,14 @@
 ---
 import { getCollection } from "astro:content";
 import Layout from "@/layouts/layout.astro";
-import EntryList from "@/components/entry-list.astro";
 import { buttonVariants } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
 
 const posts = (await getCollection("posts"))
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
   .slice(0, 5);
+
+const formatDate = (date: Date) =>
+  date.toLocaleDateString("en-US", { year: "numeric", month: "short" });
 
 // contact happens via socials — no email on purpose
 const socialLinks = [
@@ -40,28 +41,28 @@ const socialLinks = [
     </div>
   </section>
 
-  <section class="mt-14">
-    <div class="mb-6 flex items-baseline justify-between">
-      <h2
-        class="text-muted-foreground text-sm font-medium tracking-wide uppercase"
-      >
-        Recent posts
-      </h2>
-      <a
-        href="/posts"
-        class={cn(
-          buttonVariants({ variant: "link", size: "sm" }),
-          "text-muted-foreground px-0",
-        )}>All posts →</a
-      >
-    </div>
-    <EntryList
-      entries={posts.map((post) => ({
-        href: `/posts/${post.id}/`,
-        title: post.data.title,
-        date: post.data.date,
-        excerpt: post.data.excerpt,
-      }))}
-    />
+  <section class="mt-16">
+    <ul class="flex flex-col gap-3">
+      {
+        posts.map((post) => (
+          <li class="flex items-baseline justify-between gap-x-4">
+            <a href={`/posts/${post.id}/`} class="hover:underline">
+              {post.data.title}
+            </a>
+            <time
+              datetime={post.data.date.toISOString()}
+              class="text-muted-foreground shrink-0 text-sm"
+            >
+              {formatDate(post.data.date)}
+            </time>
+          </li>
+        ))
+      }
+    </ul>
+    <a
+      href="/posts"
+      class="text-muted-foreground hover:text-foreground mt-6 inline-block text-sm transition-colors"
+      >All posts →</a
+    >
   </section>
 </Layout>
