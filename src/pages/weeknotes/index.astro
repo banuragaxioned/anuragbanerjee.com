@@ -1,0 +1,24 @@
+---
+import { getCollection } from "astro:content";
+import Layout from "@/layouts/Layout.astro";
+import EntryList from "@/components/EntryList.astro";
+
+const weeknotes = (await getCollection("weeknotes")).sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
+);
+---
+
+<Layout
+  title="Weeknotes"
+  description="Weekly reflections and process notes by Anurag Banerjee."
+>
+  <h1 class="mb-8 text-3xl font-semibold tracking-tight">Weeknotes</h1>
+  <EntryList
+    entries={weeknotes.map((note) => ({
+      href: `/weeknotes/${note.id}/`,
+      title: note.data.title,
+      date: note.data.date,
+      excerpt: note.data.excerpt,
+    }))}
+  />
+</Layout>

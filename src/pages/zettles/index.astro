@@ -1,19 +1,19 @@
 ---
 import { getCollection } from "astro:content";
 import Layout from "@/layouts/Layout.astro";
+import EntryList from "@/components/EntryList.astro";
+
 const zettles = await getCollection("zettles");
 ---
 
-<Layout>
-  <h1>All Zettles</h1>
-  <ul>
-    {
-      zettles.map((zettle) => (
-        <li>
-          <a href={`/zettles/${zettle.id}/`}>{zettle.data.title}</a>
-          {zettle.data.excerpt && <p>{zettle.data.excerpt}</p>}
-        </li>
-      ))
-    }
-  </ul>
+<Layout title="Zettles" description="Short notes by Anurag Banerjee.">
+  <h1 class="mb-8 text-3xl font-semibold tracking-tight">Zettles</h1>
+  <EntryList
+    entries={zettles.map((zettle) => ({
+      href: `/zettles/${zettle.id}/`,
+      title: zettle.data.title,
+      date: zettle.data.date,
+      excerpt: zettle.data.excerpt,
+    }))}
+  />
 </Layout>

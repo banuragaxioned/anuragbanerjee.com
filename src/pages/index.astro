@@ -1,9 +1,40 @@
 ---
-import Intro from "../components/intro.astro";
-import Layout from "../layouts/Layout.astro";
-import "@/styles/global.css";
+import { getCollection } from "astro:content";
+import Layout from "@/layouts/Layout.astro";
+import EntryList from "@/components/EntryList.astro";
+
+const posts = (await getCollection("posts"))
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+  .slice(0, 5);
 ---
 
 <Layout>
-  <Intro />
+  <section>
+    <h1 class="text-3xl font-semibold tracking-tight">Hey, I'm Anurag 👋</h1>
+    <p class="mt-4 text-zinc-600 dark:text-zinc-400">
+      Tech enthusiast, Liverpool FC supporter. I post random things. All views
+      are my own. 🇮🇳 🗺️ 🎧 ⚽ 🍛🍕🍳🍔
+    </p>
+  </section>
+
+  <section class="mt-14">
+    <div class="mb-6 flex items-baseline justify-between">
+      <h2 class="text-sm font-medium tracking-wide text-zinc-500 uppercase">
+        Recent posts
+      </h2>
+      <a
+        href="/posts"
+        class="text-sm text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100"
+        >All posts →</a
+      >
+    </div>
+    <EntryList
+      entries={posts.map((post) => ({
+        href: `/posts/${post.id}/`,
+        title: post.data.title,
+        date: post.data.date,
+        excerpt: post.data.excerpt,
+      }))}
+    />
+  </section>
 </Layout>

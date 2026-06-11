@@ -1,0 +1,48 @@
+---
+interface Entry {
+  href: string;
+  title: string;
+  date?: Date;
+  excerpt?: string;
+}
+
+interface Props {
+  entries: Entry[];
+}
+
+const { entries } = Astro.props;
+
+const formatDate = (date: Date) =>
+  date.toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+  });
+---
+
+<ul class="flex flex-col gap-8">
+  {
+    entries.map((entry) => (
+      <li>
+        <a href={entry.href} class="group block">
+          <div class="flex flex-wrap items-baseline justify-between gap-x-4">
+            <h2 class="font-medium group-hover:underline">{entry.title}</h2>
+            {entry.date && (
+              <time
+                datetime={entry.date.toISOString()}
+                class="text-sm text-zinc-500 dark:text-zinc-400"
+              >
+                {formatDate(entry.date)}
+              </time>
+            )}
+          </div>
+          {entry.excerpt && (
+            <p class="mt-1 text-sm text-zinc-600 dark:text-zinc-400">
+              {entry.excerpt}
+            </p>
+          )}
+        </a>
+      </li>
+    ))
+  }
+</ul>
