@@ -6,31 +6,18 @@
       "headers": [
         {
           "key": "Link",
-          "value": "<https://anuragbanerjee.com/llms.txt>; rel=\"llms-txt\"; type=\"text/markdown\""
+          "value": "<https://anuragbanerjee.com/llms.txt>; rel=\"describedby\"; type=\"text/markdown\", <https://anuragbanerjee.com/llms.txt>; rel=\"llms-txt\"; type=\"text/markdown\""
         }
       ]
-    }
-  ],
-  "rewrites": [
+    },
     {
       "source": "/",
-      "has": [{ "type": "header", "key": "accept", "value": ".*text/markdown.*" }],
-      "destination": "/index.md"
-    },
-    {
-      "source": "/posts/:slug",
-      "has": [{ "type": "header", "key": "accept", "value": ".*text/markdown.*" }],
-      "destination": "/posts/:slug.md"
-    },
-    {
-      "source": "/weeknotes/:slug",
-      "has": [{ "type": "header", "key": "accept", "value": ".*text/markdown.*" }],
-      "destination": "/weeknotes/:slug.md"
-    },
-    {
-      "source": "/zettles/:slug",
-      "has": [{ "type": "header", "key": "accept", "value": ".*text/markdown.*" }],
-      "destination": "/zettles/:slug.md"
+      "headers": [
+        {
+          "key": "Link",
+          "value": "<https://anuragbanerjee.com/llms.txt>; rel=\"describedby\"; type=\"text/markdown\", <https://anuragbanerjee.com/llms.txt>; rel=\"llms-txt\"; type=\"text/markdown\", <https://anuragbanerjee.com/index.md>; rel=\"alternate\"; type=\"text/markdown\""
+        }
+      ]
     }
   ]
 }
