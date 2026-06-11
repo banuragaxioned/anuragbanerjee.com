@@ -2,6 +2,7 @@
 import "@/styles/global.css";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import SpeedInsights from "@vercel/speed-insights/astro";
 
 interface Props {
   title?: string;
@@ -106,6 +107,7 @@ const socialLinks = [
       applyTheme();
       darkQuery.addEventListener("change", applyTheme);
     </script>
+    <SpeedInsights />
   </head>
   <body class="antialiased">
     <div class="mx-auto flex min-h-screen max-w-2xl flex-col px-6 py-10">
