@@ -22,6 +22,11 @@ const formatDate = (date: Date) =>
 
 const days = [
   {
+    title: "Tech",
+    description:
+      "Technical direction across client builds — architecture choices, build-vs-buy calls, code quality, and keeping the stack current.",
+  },
+  {
     title: "Teams",
     description:
       "Leading the engineering, project management, design, and QA teams — and the resource planning that keeps them sane.",
@@ -45,9 +50,38 @@ const socialLinks = [
   { href: "https://linkedin.com/in/imanuragbanerjee", label: "LinkedIn" },
   { href: "https://www.instagram.com/imanuragbanerjee", label: "Instagram" },
 ];
+
+const schema = [
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    name: "Anurag Banerjee",
+    url: "https://anuragbanerjee.com/",
+    jobTitle: "Chief Operating Officer",
+    worksFor: {
+      "@type": "Organization",
+      name: "Axioned",
+      url: "https://axioned.com/",
+    },
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: "Mumbai",
+      addressCountry: "IN",
+    },
+    alumniOf: "Sikkim Manipal University",
+    sameAs: socialLinks.map((link) => link.href),
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: "Anurag Banerjee",
+    url: "https://anuragbanerjee.com/",
+    author: { "@type": "Person", name: "Anurag Banerjee" },
+  },
+];
 ---
 
-<Layout>
+<Layout schema={schema} markdownUrl="/index.md">
   <section>
     <p
       class="text-muted-foreground text-sm font-medium tracking-wide uppercase"
@@ -88,7 +122,7 @@ const socialLinks = [
     >
       What I spend my days on
     </h2>
-    <div class="mt-6 grid gap-4 sm:grid-cols-3">
+    <div class="mt-6 grid gap-4 sm:grid-cols-2">
       {
         days.map((item) => (
           <Card>

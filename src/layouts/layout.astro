@@ -6,15 +6,29 @@ import { cn } from "@/lib/utils";
 interface Props {
   title?: string;
   description?: string;
+  /** og:type — "article" for posts/weeknotes/zettles */
+  type?: "website" | "article";
+  /** ISO date for article:published_time */
+  publishedTime?: string;
+  /** URL of the markdown version of this page, for agents */
+  markdownUrl?: string;
+  /** JSON-LD object(s) rendered into the head */
+  schema?: Record<string, unknown> | Record<string, unknown>[];
 }
 
 const {
   title,
   description = "Personal site of Anurag Banerjee — posts, weeknotes, and zettles.",
+  type = "website",
+  publishedTime,
+  markdownUrl,
+  schema,
 } = Astro.props;
 
 const pageTitle = title ? `${title} · Anurag Banerjee` : "Anurag Banerjee";
 const year = new Date().getFullYear();
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
+const ogImage = new URL("og.png", Astro.site);
 
 const navLinks = [
   { href: "/posts", label: "Posts" },
@@ -39,6 +53,7 @@ const socialLinks = [
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
     <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalUrl} />
     <link rel="sitemap" href="/sitemap-index.xml" />
     <link
       rel="alternate"
@@ -46,7 +61,44 @@ const socialLinks = [
       title="Anurag Banerjee"
       href={new URL("rss.xml", Astro.site)}
     />
+    {
+      markdownUrl && (
+        <link
+          rel="alternate"
+          type="text/markdown"
+          title={`${pageTitle} (Markdown)`}
+          href={new URL(markdownUrl, Astro.site)}
+        />
+      )
+    }
     <title>{pageTitle}</title>
+
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content={type} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:site_name" content="Anurag Banerjee" />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    {
+      type === "article" && publishedTime && (
+        <meta property="article:published_time" content={publishedTime} />
+      )
+    }
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@ianuragbanerjee" />
+    <meta name="twitter:creator" content="@ianuragbanerjee" />
+    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+
+    {
+      schema && (
+        <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+      )
+    }
     <script is:inline>
       const darkQuery = window.matchMedia("(prefers-color-scheme: dark)");
       const applyTheme = () =>

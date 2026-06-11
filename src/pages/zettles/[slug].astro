@@ -13,9 +13,30 @@ export async function getStaticPaths() {
 
 const { zettle } = Astro.props;
 const { Content } = await render(zettle);
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  headline: zettle.data.title,
+  description: zettle.data.excerpt,
+  ...(zettle.data.date && { datePublished: zettle.data.date.toISOString() }),
+  author: {
+    "@type": "Person",
+    name: "Anurag Banerjee",
+    url: "https://anuragbanerjee.com/",
+  },
+  url: `https://anuragbanerjee.com/zettles/${zettle.id}/`,
+};
 ---
 
-<Layout title={zettle.data.title} description={zettle.data.excerpt}>
+<Layout
+  title={zettle.data.title}
+  description={zettle.data.excerpt}
+  type="article"
+  publishedTime={zettle.data.date?.toISOString()}
+  markdownUrl={`/zettles/${zettle.id}.md`}
+  schema={schema}
+>
   <article>
     <header class="mb-10">
       <h1 class="text-3xl font-semibold tracking-tight text-balance">
