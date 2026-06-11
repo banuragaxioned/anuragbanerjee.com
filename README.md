@@ -33,7 +33,6 @@ Uses [Bun](https://bun.sh) as the package manager and script runner.
 | `bun run dev`      | Start local dev server at `localhost:4321` |
 | `bun run build`    | Build the production site to `./dist/`     |
 | `bun run preview`  | Preview the build locally                  |
-| `bun run deploy`   | Deploy to Vercel (production)              |
 | `bun run format`   | Format with Prettier                       |
 | `bun run taze`     | Report available dependency updates        |
 | `bun run taze:fix` | Update package.json and install            |

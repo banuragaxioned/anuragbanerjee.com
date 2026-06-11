@@ -5,7 +5,6 @@
   "scripts": {
     "astro": "astro",
     "build": "astro build",
-    "deploy": "bunx vercel deploy --prod",
     "dev": "astro dev",
     "format": "prettier --write .",
     "preview": "astro preview",
