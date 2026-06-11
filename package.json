@@ -8,7 +8,9 @@
     "deploy": "astro build && wrangler pages deploy",
     "dev": "astro dev",
     "format": "prettier --write .",
-    "preview": "astro preview"
+    "preview": "astro preview",
+    "taze": "taze",
+    "taze:fix": "taze -w -i"
   },
   "dependencies": {
     "@astrojs/react": "^5.0.7",
@@ -35,6 +37,7 @@
     "@types/react-dom": "^19.2.3",
     "prettier": "^3.8.4",
     "prettier-plugin-astro": "^0.14.1",
+    "taze": "^19.14.1",
     "wrangler": "^4.99.0"
   }
 }
