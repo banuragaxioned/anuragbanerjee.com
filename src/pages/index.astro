@@ -2,13 +2,41 @@
 import { getCollection } from "astro:content";
 import Layout from "@/layouts/layout.astro";
 import { buttonVariants } from "@/components/ui/button";
+import {
+  Card,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 
 const posts = (await getCollection("posts"))
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
-  .slice(0, 5);
+  .slice(0, 3);
 
 const formatDate = (date: Date) =>
-  date.toLocaleDateString("en-US", { year: "numeric", month: "short" });
+  date.toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
+
+const days = [
+  {
+    title: "Teams",
+    description:
+      "Leading the engineering, project management, design, and QA teams — and the resource planning that keeps them sane.",
+  },
+  {
+    title: "Clients",
+    description:
+      "Working with the CEO on client relationships and the strategy behind client services.",
+  },
+  {
+    title: "People",
+    description:
+      "Hiring, retention, coaching, and the internal communication that holds it all together.",
+  },
+];
 
 // contact happens via socials — no email on purpose
 const socialLinks = [
@@ -20,10 +48,122 @@ const socialLinks = [
 
 <Layout>
   <section>
-    <h1 class="text-3xl font-semibold tracking-tight">Hey, I'm Anurag 👋</h1>
+    <p
+      class="text-muted-foreground text-sm font-medium tracking-wide uppercase"
+    >
+      Chief Operating Officer at Axioned
+    </p>
+    <h1 class="mt-3 text-4xl font-semibold tracking-tight text-balance">
+      Helping teams ship great work — no "ASAP" required.
+    </h1>
+    <p class="text-muted-foreground mt-6">
+      I'm Anurag Banerjee. I run operations at
+      <a
+        href="https://axioned.com"
+        target="_blank"
+        class="underline underline-offset-4">Axioned</a
+      >, a digital agency in Mumbai — overseeing the engineering, project
+      management, design, and QA teams that ship client work every week.
+    </p>
     <p class="text-muted-foreground mt-4">
-      Tech enthusiast, Liverpool FC supporter. I post random things. All views
-      are my own. 🇮🇳 🗺️ 🎧 ⚽ 🍛🍕🍳🍔
+      I came up through project management — via publishing at Packt and an MBA
+      in information systems — so my work sits between people, process, and
+      product: clear goals, honest communication, and some room for the
+      unimaginable.
+    </p>
+    <div class="mt-8 flex flex-wrap gap-3">
+      <a href="/posts" class={buttonVariants({ variant: "default" })}
+        >Read the blog</a
+      >
+      <a href="/resume" class={buttonVariants({ variant: "outline" })}
+        >See my resume</a
+      >
+    </div>
+  </section>
+
+  <section class="mt-16">
+    <h2
+      class="text-muted-foreground text-sm font-medium tracking-wide uppercase"
+    >
+      What I spend my days on
+    </h2>
+    <div class="mt-6 grid gap-4 sm:grid-cols-3">
+      {
+        days.map((item) => (
+          <Card>
+            <CardHeader>
+              <CardTitle>{item.title}</CardTitle>
+              <CardDescription>{item.description}</CardDescription>
+            </CardHeader>
+          </Card>
+        ))
+      }
+    </div>
+  </section>
+
+  <section class="mt-16">
+    <div class="flex items-baseline justify-between">
+      <h2
+        class="text-muted-foreground text-sm font-medium tracking-wide uppercase"
+      >
+        Latest writing
+      </h2>
+      <a
+        href="/posts"
+        class="text-muted-foreground hover:text-foreground text-sm transition-colors"
+        >All posts →</a
+      >
+    </div>
+    <ul class="mt-6 flex flex-col gap-6">
+      {
+        posts.map((post) => (
+          <li>
+            <time
+              datetime={post.data.date.toISOString()}
+              class="text-muted-foreground text-sm"
+            >
+              {formatDate(post.data.date)}
+            </time>
+            <a href={`/posts/${post.id}/`} class="group mt-1 block">
+              <h3 class="font-medium group-hover:underline">
+                {post.data.title}
+              </h3>
+              <p class="text-muted-foreground mt-1 text-sm">
+                {post.data.excerpt}
+              </p>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+
+  <section class="mt-16">
+    <h2
+      class="text-muted-foreground text-sm font-medium tracking-wide uppercase"
+    >
+      Beyond work
+    </h2>
+    <p class="text-muted-foreground mt-4">
+      Liverpool FC supporter — I co-founded and ran
+      <span class="text-foreground">The Red Legions</span>, an LFC fan site, for
+      seven years. I travel solo when I can, keep a public notebook of
+      <a href="/weeknotes" class="underline underline-offset-4">weeknotes</a>
+      and
+      <a href="/zettles" class="underline underline-offset-4">zettles</a>, and
+      post random things. All views are my own. 🇮🇳 🗺️ 🎧 ⚽ 🍛🍕🍳🍔
+    </p>
+  </section>
+
+  <section class="mt-16">
+    <h2
+      class="text-muted-foreground text-sm font-medium tracking-wide uppercase"
+    >
+      Get in touch
+    </h2>
+    <p class="text-muted-foreground mt-4">
+      No forms, no inbox. The fastest way to reach me is a message on any of
+      these:
     </p>
     <div class="mt-6 flex flex-wrap gap-3">
       {
@@ -39,30 +179,5 @@ const socialLinks = [
         ))
       }
     </div>
-  </section>
-
-  <section class="mt-16">
-    <ul class="flex flex-col gap-3">
-      {
-        posts.map((post) => (
-          <li class="flex items-baseline justify-between gap-x-4">
-            <a href={`/posts/${post.id}/`} class="hover:underline">
-              {post.data.title}
-            </a>
-            <time
-              datetime={post.data.date.toISOString()}
-              class="text-muted-foreground shrink-0 text-sm"
-            >
-              {formatDate(post.data.date)}
-            </time>
-          </li>
-        ))
-      }
-    </ul>
-    <a
-      href="/posts"
-      class="text-muted-foreground hover:text-foreground mt-6 inline-block text-sm transition-colors"
-      >All posts →</a
-    >
   </section>
 </Layout>
