@@ -4,7 +4,7 @@ excerpt: Take SVGs, combine them into a symbol sprite file, and then use them an
 date: 2021-06-23
 ---
 
-* * *
+---
 
 ### How to make SVG sprite and use in your 11ty projects
 
@@ -48,8 +48,8 @@ Forked copy from Max’s repo before some more recent changes: [https://github.c
 
 ### In action
 
-*   Now go ahead and add new SVGs into src/assets/icons folder
-*   Use shortcodes (`logo`, `icon`, `colorlogo`) and pass the necessary parameters to render to get shapes be rendered from your symbol sprite.
+- Now go ahead and add new SVGs into src/assets/icons folder
+- Use shortcodes (`logo`, `icon`, `colorlogo`) and pass the necessary parameters to render to get shapes be rendered from your symbol sprite.
 
 {% icon "wheel" %}
 
@@ -57,11 +57,11 @@ Forked copy from Max’s repo before some more recent changes: [https://github.c
 
 {% colorlogo "wheel", "150", "150", "purple" %}
 
-*   You can also directly use the shape like below.
+- You can also directly use the shape like below.
 
 <svg><use xlink:href="#icon-github" fill="#dd0000"></use></svg>
 
-*   Save and rebuild (if you are not already running in locally using `npm start` (which will auto-refresh your browser)
+- Save and rebuild (if you are not already running in locally using `npm start` (which will auto-refresh your browser)
 
 Once the rebuild is done, you should see something like the below screenshot 🙂
 
@@ -78,15 +78,15 @@ Appreciate any feedback and/or suggestions any might have on what I have shared 
 This is by no means production ready and I’m sure there are ways to improve and further optimize the workflow. The goal of this exercise is to act more as a proof of concept or a _hack_ on how to put this together for some additional use cases (which may or may not be your requirement).
 
 [**banuragprdxn/eleventastic**  
-_A simple Eleventy Starter Kit, my base for all new 11ty projects. ( Demo Site) CSS Pipeline (Sass, CleanCSS) JS…_github.com](https://github.com/banuragprdxn/eleventastic "https://github.com/banuragprdxn/eleventastic")[](https://github.com/banuragprdxn/eleventastic)
+\_A simple Eleventy Starter Kit, my base for all new 11ty projects. ( Demo Site) CSS Pipeline (Sass, CleanCSS) JS…\_github.com](https://github.com/banuragprdxn/eleventastic "https://github.com/banuragprdxn/eleventastic")[](https://github.com/banuragprdxn/eleventastic)
 
 **References:**
 
 [**The complete guide to SVG**  
-_SVG allows us to create icons in a file format that is resolution independent, which is awesome, but due to the…_www.creativebloq.com](https://www.creativebloq.com/features/the-complete-guide-to-svg/6 "https://www.creativebloq.com/features/the-complete-guide-to-svg/6")[](https://www.creativebloq.com/features/the-complete-guide-to-svg/6)
+\_SVG allows us to create icons in a file format that is resolution independent, which is awesome, but due to the…\_www.creativebloq.com](https://www.creativebloq.com/features/the-complete-guide-to-svg/6 "https://www.creativebloq.com/features/the-complete-guide-to-svg/6")[](https://www.creativebloq.com/features/the-complete-guide-to-svg/6)
 
 [**maxboeck/eleventastic**  
-_A simple Eleventy Starter Kit, my base for all new 11ty projects. ( Demo Site) CSS Pipeline (Sass, CleanCSS) JS…_github.com](https://github.com/maxboeck/eleventastic "https://github.com/maxboeck/eleventastic")[](https://github.com/maxboeck/eleventastic)
+\_A simple Eleventy Starter Kit, my base for all new 11ty projects. ( Demo Site) CSS Pipeline (Sass, CleanCSS) JS…\_github.com](https://github.com/maxboeck/eleventastic "https://github.com/maxboeck/eleventastic")[](https://github.com/maxboeck/eleventastic)
 
 [**Template Shortcodes**  
-_Template Shortcodes | Eleventy, a simpler static site generator._www.11ty.dev](https://www.11ty.dev/docs/shortcodes/ "https://www.11ty.dev/docs/shortcodes/")[](https://www.11ty.dev/docs/shortcodes/)
+\_Template Shortcodes | Eleventy, a simpler static site generator.\_www.11ty.dev](https://www.11ty.dev/docs/shortcodes/ "https://www.11ty.dev/docs/shortcodes/")[](https://www.11ty.dev/docs/shortcodes/)

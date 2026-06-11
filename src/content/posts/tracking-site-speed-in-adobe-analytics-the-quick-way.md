@@ -10,20 +10,20 @@ There are more than enough ways to set site speed tracking on your web property.
 
 ### Install the plug-in
 
-*   Go to the Extensions tab of your property
-*   Install and Publish the Common Analytics Plugins extension.
-*   Once published, create a rule to load the library with the following configuration:
-*   Event: Library Loaded (Page Top)
-*   Condition: None
-*   Add an action to the newly created rule:
-*   Extension: Common Analytics Plugin
-*   Action Type: Initialize `getPageLoadTime`
-*   Save to the library and publish the rule
+- Go to the Extensions tab of your property
+- Install and Publish the Common Analytics Plugins extension.
+- Once published, create a rule to load the library with the following configuration:
+- Event: Library Loaded (Page Top)
+- Condition: None
+- Add an action to the newly created rule:
+- Extension: Common Analytics Plugin
+- Action Type: Initialize `getPageLoadTime`
+- Save to the library and publish the rule
 
 If you are more tech savvy then you can explore couple of more options described here:
 
-*   [Install the plug-in using Launch custom code editor](https://experienceleague.adobe.com/docs/analytics/implementation/vars/plugins/getpageloadtime.html?lang=en#install-the-plug-in-using-launch-custom-code-editor)
-*   [Install the plug-in using AppMeasurement](https://experienceleague.adobe.com/docs/analytics/implementation/vars/plugins/getpageloadtime.html?lang=en#install-the-plug-in-using-appmeasurement)
+- [Install the plug-in using Launch custom code editor](https://experienceleague.adobe.com/docs/analytics/implementation/vars/plugins/getpageloadtime.html?lang=en#install-the-plug-in-using-launch-custom-code-editor)
+- [Install the plug-in using AppMeasurement](https://experienceleague.adobe.com/docs/analytics/implementation/vars/plugins/getpageloadtime.html?lang=en#install-the-plug-in-using-appmeasurement)
 
 ### Setting up events
 
@@ -49,7 +49,7 @@ You would need create a calculated metric to get the average page load time for 
 
 Some really great and helpful resources:
 
-*   [The Hard Truth About Measuring Page Load Time](https://analyticsdemystified.com/google-analytics/hard-truth-measuring-page-load-time/) by Josh West on Analytics Demystified
-*   [Measuring Site Speed in Adobe Analytics](https://blog.adobe.com/en/2013/08/16/measuring-site-speed-in-adobe-analytics.html?) by Ben Gaines on Adobe Blog
-*   [How to Classify Page Load Time in Adobe Analytics](https://www.ourpcgeek.com/how-to-classify-page-load-time/) on OurPcGeek
-*   [Classification Rule Builder workflow](https://experienceleague.adobe.com/docs/analytics/components/classifications/classifications-rulebuilder/classification-rule-builder.html) on Adobe Experience League
+- [The Hard Truth About Measuring Page Load Time](https://analyticsdemystified.com/google-analytics/hard-truth-measuring-page-load-time/) by Josh West on Analytics Demystified
+- [Measuring Site Speed in Adobe Analytics](https://blog.adobe.com/en/2013/08/16/measuring-site-speed-in-adobe-analytics.html?) by Ben Gaines on Adobe Blog
+- [How to Classify Page Load Time in Adobe Analytics](https://www.ourpcgeek.com/how-to-classify-page-load-time/) on OurPcGeek
+- [Classification Rule Builder workflow](https://experienceleague.adobe.com/docs/analytics/components/classifications/classifications-rulebuilder/classification-rule-builder.html) on Adobe Experience League

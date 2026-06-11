@@ -4,7 +4,6 @@ excerpt: "Lots of time on understanding the WWW, security, CDNs and other engine
 date: "2021-06-28T09:00:08.781Z"
 ---
 
-
 Hello and thank you for stumbling on this. This, and the other future weekenotes, are a way for me to capture what I have been upto in the last week, my process, thoughts and reflections.
 
 - Spent a lot of time trying to solve Engineering problems at work — ranging from understanding how WAFs (Web Application Firewall) work, CDNs (like Cloudflare) and [how one might add more security](https://scotthelme.co.uk/security-headers-cloudflare-worker/) (and got a A+ security score on Synk.io), understanding more about HTTP headers and how to allow/block requests based on these.
