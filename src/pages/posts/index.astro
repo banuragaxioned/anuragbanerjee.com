@@ -1,7 +1,7 @@
 ---
 import { getCollection } from "astro:content";
-import Layout from "@/layouts/Layout.astro";
-import EntryList from "@/components/EntryList.astro";
+import Layout from "@/layouts/layout.astro";
+import EntryList from "@/components/entry-list.astro";
 
 const posts = (await getCollection("posts")).sort(
   (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
