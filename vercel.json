@@ -19,27 +19,5 @@
         }
       ]
     }
-  ],
-  "rewrites": [
-    {
-      "source": "/",
-      "has": [{ "type": "header", "key": "accept", "value": ".*text/markdown.*" }],
-      "destination": "/index.md"
-    },
-    {
-      "source": "/posts/:slug",
-      "has": [{ "type": "header", "key": "accept", "value": ".*text/markdown.*" }],
-      "destination": "/posts/:slug.md"
-    },
-    {
-      "source": "/weeknotes/:slug",
-      "has": [{ "type": "header", "key": "accept", "value": ".*text/markdown.*" }],
-      "destination": "/weeknotes/:slug.md"
-    },
-    {
-      "source": "/zettles/:slug",
-      "has": [{ "type": "header", "key": "accept", "value": ".*text/markdown.*" }],
-      "destination": "/zettles/:slug.md"
-    }
   ]
 }
