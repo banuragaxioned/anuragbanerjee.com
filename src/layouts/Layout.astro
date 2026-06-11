@@ -1,7 +1,7 @@
 ---
 import "@/styles/global.css";
-import "@fontsource-variable/geist";
-import "@fontsource-variable/geist-mono";
+import { buttonVariants } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 
 interface Props {
   title?: string;
@@ -15,6 +15,18 @@ const {
 
 const pageTitle = title ? `${title} · Anurag Banerjee` : "Anurag Banerjee";
 const year = new Date().getFullYear();
+
+const navLinks = [
+  { href: "/posts", label: "Posts" },
+  { href: "/weeknotes", label: "Weeknotes" },
+  { href: "/zettles", label: "Zettles" },
+];
+
+const socialLinks = [
+  { href: "https://x.com/ianuragbanerjee", label: "X" },
+  { href: "https://github.com/banuragaxioned", label: "GitHub" },
+  { href: "https://linkedin.com/in/imanuragbanerjee", label: "LinkedIn" },
+];
 ---
 
 <!doctype html>
@@ -33,19 +45,32 @@ const year = new Date().getFullYear();
       href={new URL("rss.xml", Astro.site)}
     />
     <title>{pageTitle}</title>
+    <script is:inline>
+      const darkQuery = window.matchMedia("(prefers-color-scheme: dark)");
+      const applyTheme = () =>
+        document.documentElement.classList.toggle("dark", darkQuery.matches);
+      applyTheme();
+      darkQuery.addEventListener("change", applyTheme);
+    </script>
   </head>
-  <body
-    class="bg-white font-sans text-zinc-900 antialiased dark:bg-zinc-950 dark:text-zinc-100"
-  >
+  <body class="antialiased">
     <div class="mx-auto flex min-h-screen max-w-2xl flex-col px-6 py-10">
-      <header class="mb-12 flex flex-wrap items-baseline justify-between gap-4">
+      <header class="mb-12 flex flex-wrap items-center justify-between gap-4">
         <a href="/" class="font-semibold tracking-tight">Anurag Banerjee</a>
-        <nav
-          class="flex gap-5 text-sm text-zinc-500 *:transition-colors *:hover:text-zinc-900 dark:text-zinc-400 dark:*:hover:text-zinc-100"
-        >
-          <a href="/posts">Posts</a>
-          <a href="/weeknotes">Weeknotes</a>
-          <a href="/zettles">Zettles</a>
+        <nav class="-mr-2.5 flex">
+          {
+            navLinks.map((link) => (
+              <a
+                href={link.href}
+                class={cn(
+                  buttonVariants({ variant: "ghost", size: "sm" }),
+                  "text-muted-foreground",
+                )}
+              >
+                {link.label}
+              </a>
+            ))
+          }
         </nav>
       </header>
 
@@ -54,21 +79,17 @@ const year = new Date().getFullYear();
       </main>
 
       <footer
-        class="mt-16 flex flex-wrap items-baseline justify-between gap-4 border-t border-zinc-200 pt-6 text-sm text-zinc-500 dark:border-zinc-800 dark:text-zinc-400"
+        class="text-muted-foreground mt-16 flex flex-wrap items-baseline justify-between gap-4 border-t pt-6 text-sm"
       >
         <p>© {year} Anurag Banerjee</p>
-        <nav
-          class="flex gap-4 *:transition-colors *:hover:text-zinc-900 dark:*:hover:text-zinc-100"
-        >
-          <a href="https://x.com/ianuragbanerjee" target="_blank" rel="me">X</a>
-          <a href="https://github.com/banuragaxioned" target="_blank" rel="me"
-            >GitHub</a
-          >
-          <a
-            href="https://linkedin.com/in/imanuragbanerjee"
-            target="_blank"
-            rel="me">LinkedIn</a
-          >
+        <nav class="hover:*:text-foreground flex gap-4 *:transition-colors">
+          {
+            socialLinks.map((link) => (
+              <a href={link.href} target="_blank" rel="me">
+                {link.label}
+              </a>
+            ))
+          }
           <a href="/rss.xml">RSS</a>
         </nav>
       </footer>

@@ -4,7 +4,13 @@ excerpt: How I got into travelling alone, what I love about it and why. And frie
 date: 2021-12-07
 ---
 
+## <<<<<<< HEAD
+
+=======
+
 ---
+
+> > > > > > > 819ceb04dbcda3bd1cd75a0eeb35b3e36294d15e
 
 ### The joy of travelling solo
 
@@ -60,7 +66,13 @@ I like cold place. I mean, Single digit Celsius cold 🧊. Maybe it is the humid
 
 On the way back from Nathu La, Sikkim
 
+## <<<<<<< HEAD
+
+=======
+
 ---
+
+> > > > > > > 819ceb04dbcda3bd1cd75a0eeb35b3e36294d15e
 
 #### Don’t overthink
 
