@@ -1,0 +1,119 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import { Badge } from "@/components/ui/badge";
+import { Separator } from "@/components/ui/separator";
+
+// TODO(anurag): replace placeholder entries with real roles, dates, and bullets
+const strengths = [
+  "Web performance",
+  "Analytics & measurement",
+  "Technical SEO",
+  "Frontend engineering",
+  "Team leadership",
+];
+
+const experience = [
+  {
+    role: "[Role title]",
+    company: "Axioned",
+    period: "[Start] – Present",
+    points: [
+      "[What you own / lead at Axioned]",
+      "[A measurable outcome or highlight]",
+    ],
+  },
+  {
+    role: "[Previous role]",
+    company: "[Company]",
+    period: "[Start] – [End]",
+    points: ["[Responsibility or achievement]"],
+  },
+];
+
+const education = [
+  {
+    school: "[School / University]",
+    detail: "[Degree, year]",
+  },
+];
+---
+
+<Layout
+  title="Resume"
+  description="Resume of Anurag Banerjee — experience, strengths, and education."
+>
+  <section>
+    <h1 class="text-3xl font-semibold tracking-tight">Resume</h1>
+    <p class="text-muted-foreground mt-4">
+      The short version of where I've been and what I'm good at. For the longer
+      story, find me on
+      <a
+        href="https://linkedin.com/in/imanuragbanerjee"
+        target="_blank"
+        class="underline underline-offset-4">LinkedIn</a
+      >.
+    </p>
+  </section>
+
+  <section class="mt-12">
+    <h2
+      class="text-muted-foreground text-sm font-medium tracking-wide uppercase"
+    >
+      Core strengths
+    </h2>
+    <div class="mt-4 flex flex-wrap gap-2">
+      {
+        strengths.map((strength) => (
+          <Badge variant="secondary">{strength}</Badge>
+        ))
+      }
+    </div>
+  </section>
+
+  <section class="mt-12">
+    <h2
+      class="text-muted-foreground text-sm font-medium tracking-wide uppercase"
+    >
+      Experience
+    </h2>
+    <ul class="mt-6">
+      {
+        experience.map((job, index) => (
+          <li>
+            {index > 0 && <Separator className="my-6" />}
+            <div class="flex flex-wrap items-baseline justify-between gap-x-4">
+              <h3 class="font-medium">
+                {job.role} ·{" "}
+                <span class="text-muted-foreground">{job.company}</span>
+              </h3>
+              <span class="text-muted-foreground text-sm">{job.period}</span>
+            </div>
+            <ul class="text-muted-foreground mt-2 list-disc pl-5 text-sm">
+              {job.points.map((point) => (
+                <li>{point}</li>
+              ))}
+            </ul>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+
+  <section class="mt-12">
+    <h2
+      class="text-muted-foreground text-sm font-medium tracking-wide uppercase"
+    >
+      Education
+    </h2>
+    <ul class="mt-6">
+      {
+        education.map((entry) => (
+          <li class="flex flex-wrap items-baseline justify-between gap-x-4">
+            <h3 class="font-medium">{entry.school}</h3>
+            <span class="text-muted-foreground text-sm">{entry.detail}</span>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+</Layout>

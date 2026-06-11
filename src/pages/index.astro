@@ -8,6 +8,13 @@ import { cn } from "@/lib/utils";
 const posts = (await getCollection("posts"))
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
   .slice(0, 5);
+
+// contact happens via socials — no email on purpose
+const socialLinks = [
+  { href: "https://x.com/ianuragbanerjee", label: "X" },
+  { href: "https://github.com/banuragaxioned", label: "GitHub" },
+  { href: "https://linkedin.com/in/imanuragbanerjee", label: "LinkedIn" },
+];
 ---
 
 <Layout>
@@ -17,6 +24,20 @@ const posts = (await getCollection("posts"))
       Tech enthusiast, Liverpool FC supporter. I post random things. All views
       are my own. 🇮🇳 🗺️ 🎧 ⚽ 🍛🍕🍳🍔
     </p>
+    <div class="mt-6 flex flex-wrap gap-3">
+      {
+        socialLinks.map((link) => (
+          <a
+            href={link.href}
+            target="_blank"
+            rel="me"
+            class={buttonVariants({ variant: "outline", size: "sm" })}
+          >
+            {link.label}
+          </a>
+        ))
+      }
+    </div>
   </section>
 
   <section class="mt-14">
