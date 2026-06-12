@@ -13,6 +13,8 @@ interface Props {
   publishedTime?: string;
   /** URL of the markdown version of this page, for agents */
   markdownUrl?: string;
+  /** page-specific og image path, defaults to the site-wide card */
+  ogImage?: string;
   /** JSON-LD object(s) rendered into the head */
   schema?: Record<string, unknown> | Record<string, unknown>[];
 }
@@ -23,13 +25,18 @@ const {
   type = "website",
   publishedTime,
   markdownUrl,
+  ogImage: ogImagePath,
   schema,
 } = Astro.props;
 
 const pageTitle = title ? `${title} · Anurag Banerjee` : "Anurag Banerjee";
 const year = new Date().getFullYear();
-const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
-const ogImage = new URL("og.png", Astro.site);
+// pages are folder-based, so the trailing-slash form is the canonical one
+const canonicalPath = Astro.url.pathname.endsWith("/")
+  ? Astro.url.pathname
+  : `${Astro.url.pathname}/`;
+const canonicalUrl = new URL(canonicalPath, Astro.site);
+const ogImage = new URL(ogImagePath ?? "og.png", Astro.site);
 
 const navLinks = [
   { href: "/posts", label: "Posts" },
@@ -108,6 +115,12 @@ const socialLinks = [
       darkQuery.addEventListener("change", applyTheme);
     </script>
     <SpeedInsights />
+    <!-- Cloudflare Web Analytics -->
+    <script
+      is:inline
+      defer
+      src="https://static.cloudflareinsights.com/beacon.min.js"
+      data-cf-beacon='{"token": "829a6d0063fd49bfb0ccc3feafdbaa9d"}'></script>
   </head>
   <body class="antialiased">
     <div class="mx-auto flex min-h-screen max-w-2xl flex-col px-6 py-10">
