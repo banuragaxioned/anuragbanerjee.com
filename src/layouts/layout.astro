@@ -2,7 +2,6 @@
 import "@/styles/global.css";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import SpeedInsights from "@vercel/speed-insights/astro";
 
 interface Props {
   title?: string;
@@ -114,7 +113,6 @@ const socialLinks = [
       applyTheme();
       darkQuery.addEventListener("change", applyTheme);
     </script>
-    <SpeedInsights />
     <!-- Cloudflare Web Analytics -->
     <script
       is:inline
