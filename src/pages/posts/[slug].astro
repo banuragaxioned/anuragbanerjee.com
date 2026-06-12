@@ -41,6 +41,7 @@ const schema = {
   type="article"
   publishedTime={post.data.date.toISOString()}
   markdownUrl={`/posts/${post.id}.md`}
+  ogImage={`/posts/${post.id}.og.png`}
   schema={schema}
 >
   <article>
