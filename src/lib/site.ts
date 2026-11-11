@@ -1,6 +1,6 @@
 export const SITE = {
   description:
-    "Anurag Banerjee is COO at Axioned, a digital agency in Mumbai. Writing on technology, teams and tinkering: posts, weeknotes and zettles.",
+    "Anurag Banerjee is COO at Axioned, a digital agency in Mumbai. Writing on technology, teams and tinkering: posts and weeknotes.",
   jobTitle: "Chief Operating Officer",
   language: "en",
   locale: "en_US",

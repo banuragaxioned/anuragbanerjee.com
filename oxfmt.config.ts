@@ -15,7 +15,7 @@ export default defineConfig({
     "dist",
     "public",
     "bun.lock",
-    // Prose, not code: migrated posts and zettles synced from Obsidian.
+    // Prose, not code: migrated posts and weeknotes.
     "src/content",
   ],
   jsxSingleQuote: false,

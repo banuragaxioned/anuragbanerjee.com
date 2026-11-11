@@ -4,14 +4,6 @@ excerpt: How I got into travelling alone, what I love about it and why. And frie
 date: 2021-12-07
 ---
 
-## <<<<<<< HEAD
-
-=======
-
----
-
-> > > > > > > 819ceb04dbcda3bd1cd75a0eeb35b3e36294d15e
-
 ### The joy of travelling solo
 
 I was 24 when I first travelled alone. There were two parts to this trip — first where I spent a long weekend with some of my colleagues at Goa (which was good, gave me the initial burst of confidence) and the second was me deciding to stay back for an extra couple of days alone to just relax and enjoy the break.
@@ -66,13 +58,7 @@ I like cold place. I mean, Single digit Celsius cold 🧊. Maybe it is the humid
 
 On the way back from Nathu La, Sikkim
 
-## <<<<<<< HEAD
-
-=======
-
 ---
-
-> > > > > > > 819ceb04dbcda3bd1cd75a0eeb35b3e36294d15e
 
 #### Don’t overthink
 

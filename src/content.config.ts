@@ -23,14 +23,4 @@ const weeknotes = defineCollection({
   }),
 });
 
-const zettles = defineCollection({
-  loader: glob({ pattern: "**/*.md", base: "./src/content/zettles" }),
-  schema: z.object({
-    title: z.string().min(1, "Title is required"),
-    excerpt: z.string().optional(),
-    date: z.coerce.date().optional(),
-    updated: z.coerce.date().optional(),
-  }),
-});
-
-export const collections = { posts, weeknotes, zettles };
+export const collections = { posts, weeknotes };

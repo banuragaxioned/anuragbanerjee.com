@@ -54,17 +54,16 @@ const section = (heading: string, docs: Doc[]) =>
 // llms-full.txt: everything on the site in one markdown file, for agents that
 // prefer a single fetch to crawling llms.txt link by link
 export const GET: APIRoute = async () => {
-  const [posts, weeknotes, zettles] = await Promise.all([
+  const [posts, weeknotes] = await Promise.all([
     getCollection("posts"),
     getCollection("weeknotes"),
-    getCollection("zettles"),
   ]);
   const text = [
     `# ${SITE.name}`,
     "",
     `> ${SITE.description}`,
     "",
-    `The full text of ${SITE.url}: every post, weeknote and zettle, newest first. A shorter map of the site is at ${absoluteUrl("llms.txt")}.`,
+    `The full text of ${SITE.url}: every post and weeknote, newest first. A shorter map of the site is at ${absoluteUrl("llms.txt")}.`,
     "",
     section(
       "Posts",
@@ -86,17 +85,6 @@ export const GET: APIRoute = async () => {
         title: note.data.title,
         updated: note.data.updated,
         url: absoluteUrl(`/weeknotes/${note.id}/`),
-      })),
-    ),
-    section(
-      "Zettles",
-      zettles.toSorted(newestFirst).map((zettle) => ({
-        body: zettle.body ?? "",
-        date: zettle.data.date,
-        excerpt: zettle.data.excerpt,
-        title: zettle.data.title,
-        updated: zettle.data.updated,
-        url: absoluteUrl(`/zettles/${zettle.id}/`),
       })),
     ),
   ].join("\n");

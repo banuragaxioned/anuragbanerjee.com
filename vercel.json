@@ -46,6 +46,16 @@
       "source": "/blog/",
       "destination": "/posts/",
       "permanent": true
+    },
+    {
+      "source": "/zettles/",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/zettles/:slug/",
+      "destination": "/",
+      "permanent": true
     }
   ],
   "headers": [

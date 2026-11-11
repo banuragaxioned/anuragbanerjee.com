@@ -20,7 +20,7 @@ export default function middleware(request: Request) {
 
   // content routes only — exactly one extension-less segment after the section
   const path = url.pathname.replace(/\/$/u, "");
-  if (/^\/(?:posts|weeknotes|zettles)\/[^/.]+$/u.test(path)) {
+  if (/^\/(?:posts|weeknotes)\/[^/.]+$/u.test(path)) {
     url.pathname = `${path}.md`;
     return rewrite(url);
   }
@@ -29,11 +29,5 @@ export default function middleware(request: Request) {
 }
 
 export const config = {
-  matcher: [
-    "/",
-    "/index.html",
-    "/posts/:path*",
-    "/weeknotes/:path*",
-    "/zettles/:path*",
-  ],
+  matcher: ["/", "/index.html", "/posts/:path*", "/weeknotes/:path*"],
 };
