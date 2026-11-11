@@ -42,7 +42,7 @@ export const GET: APIRoute = async ({ site }) => {
     `- Resume: ${base}/resume/`,
     `- RSS: ${base}/rss.xml`,
     "- X: https://x.com/ianuragbanerjee",
-    "- GitHub: https://github.com/banuragaxioned",
+    "- GitHub: https://github.com/imanuragbanerjee",
     "- LinkedIn: https://linkedin.com/in/imanuragbanerjee",
     "- Instagram: https://www.instagram.com/imanuragbanerjee",
     "",
