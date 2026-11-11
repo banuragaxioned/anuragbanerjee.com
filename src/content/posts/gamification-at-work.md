@@ -8,7 +8,7 @@ As someone who has spent countless hours on games, I can attest to the fact that
 
 For those who are not too familiar with building a specific skill set that involves strategic game play and fun in equal proportions, I wouldn’t say you’re _missing out_ exactly, but many of these games have extremely good community following, with people competing with each other at global level, gaming conventions and meetups, there’s an entire ecosystem which keeps on growing in volume. All this, while being a great way to pass time, are and have a way to make money from it (hello Youtubers, and game designers, devs!) at the same time, has a mass attraction appeal to those of us, who count gaming among the simple pleasures of life.
 
-![](https://cdn-images-1.medium.com/max/800/0*Tn3BhBJ5iNc1MgcR.)
+![Colourful plastic game pawns standing on a board of connected points.](../../assets/posts/gamification-at-work/colourful-board-game-pawns.png)
 
 So what _is_ Gamification? It is the application of typical elements of game play like point scoring, competition with others, rules of play, to other areas of one’s existence to encourage engagement with our fellow beings.
 
@@ -18,7 +18,7 @@ Like everything, one could argue about whether or not Gamification principles ca
 2.  **Replace force with reinforcements :** Focus on the habit you want to reinforce and reward it with level ups, badges or power-up. So the players do the thing again, and again, to be rewarded again and again. classical conditioning #101. As long as you don’t force their hand to obtain a reinforcement, your game plan looks good.
 3.  Last but surely the most important, **Design**. everything will fail if the model fails to keep people interested with immersion and augmentation of physical with virtual reward systems. These have to be designed to drive productivity, always keep the eyes on the prize, and should not be so complex as to deter/distract the players from following the rule book.
 
-![](https://cdn-images-1.medium.com/max/800/0*oyF8m008p1f4EWJp.)
+![A hand holding up a phone that shows a location-based mobile game, with people standing in a park behind it.](../../assets/posts/gamification-at-work/location-based-game-on-a-phone.png)
 
 [Nike+](https://www.nike.com/us/en_us/e/nike-plus-membership) app wins with its idea to extend workouts into a social activity, with the opportunity to challenge friends, and showcase your prowess in the community leader boards. Pokemon Go on the other hand, started with a big bang of the pokeball, but couldn’t master the art of retention. Such things have to be thought out well, from long term and then backwards from there, instead of the other way around.
 
