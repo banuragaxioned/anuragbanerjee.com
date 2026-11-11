@@ -3,37 +3,37 @@
   "trailingSlash": true,
   "redirects": [
     {
-      "source": "/github",
+      "source": "/github/",
       "destination": "https://github.com/imanuragbanerjee",
       "permanent": false
     },
     {
-      "source": "/x",
+      "source": "/x/",
       "destination": "https://x.com/ianuragbanerjee",
       "permanent": false
     },
     {
-      "source": "/twitter",
+      "source": "/twitter/",
       "destination": "https://x.com/ianuragbanerjee",
       "permanent": false
     },
     {
-      "source": "/linkedin",
+      "source": "/linkedin/",
       "destination": "https://linkedin.com/in/imanuragbanerjee",
       "permanent": false
     },
     {
-      "source": "/instagram",
+      "source": "/instagram/",
       "destination": "https://www.instagram.com/imanuragbanerjee",
       "permanent": false
     },
     {
-      "source": "/rss",
+      "source": "/rss/",
       "destination": "/rss.xml",
       "permanent": true
     },
     {
-      "source": "/feed",
+      "source": "/feed/",
       "destination": "/rss.xml",
       "permanent": true
     },
@@ -43,7 +43,7 @@
       "permanent": true
     },
     {
-      "source": "/blog",
+      "source": "/blog/",
       "destination": "/posts/",
       "permanent": true
     }
