@@ -14,10 +14,11 @@ export async function GET(context: APIContext) {
   );
 
   return await rss({
+    customData: `<language>en</language><atom:link href="${new URL("rss.xml", site).href}" rel="self" type="application/rss+xml" />`,
     title: "Anurag Banerjee",
-    description:
-      "Personal site of Anurag Banerjee — posts, weeknotes, and zettles.",
+    description: "Essays and articles by Anurag Banerjee.",
     site,
+    xmlns: { atom: "http://www.w3.org/2005/Atom" },
     items: posts.map((post) => ({
       title: post.data.title,
       description: post.data.excerpt,

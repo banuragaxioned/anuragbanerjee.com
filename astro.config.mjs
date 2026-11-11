@@ -7,6 +7,7 @@ import { defineConfig } from "astro/config";
 export default defineConfig({
   site: "https://anuragbanerjee.com",
   compressHTML: true,
+  trailingSlash: "always",
   integrations: [react(), sitemap()],
   vite: {
     plugins: [tailwindcss()],

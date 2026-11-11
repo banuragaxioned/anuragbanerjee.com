@@ -56,6 +56,10 @@ export const GET: APIRoute = async ({ site }) => {
     `- [RSS](${base}/rss.xml)`,
     `- [Sitemap](${base}/sitemap-index.xml)`,
     "",
+    "## Optional",
+    "",
+    `- [Full content](${base}/llms-full.txt): every post, weeknote and zettle in one markdown file`,
+    "",
   ];
 
   return new Response(lines.join("\n"), {
