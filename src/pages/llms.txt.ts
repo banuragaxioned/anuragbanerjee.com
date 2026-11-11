@@ -16,12 +16,11 @@ export const GET: APIRoute = async ({ site }) => {
   const weeknotes = allWeeknotes.toSorted(
     (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
   );
-  const zettles = await getCollection("zettles");
 
   const lines = [
     "# Anurag Banerjee",
     "",
-    "> Personal site of Anurag Banerjee — Chief Operating Officer at Axioned, a digital agency in Mumbai, India. Posts on work and life, weekly notes, and short zettel-style notes. Contact via X, GitHub, LinkedIn, or Instagram (no email).",
+    "> Personal site of Anurag Banerjee — Chief Operating Officer at Axioned, a digital agency in Mumbai, India. Posts on work and life, and weekly notes. Contact via X, GitHub, LinkedIn, or Instagram (no email).",
     "",
     "Every content page has a Markdown version: append `.md` to the page URL (e.g. `/posts/<slug>.md`).",
     "",
@@ -44,23 +43,15 @@ export const GET: APIRoute = async ({ site }) => {
         `- [${note.data.title}](${base}/weeknotes/${note.id}.md)${note.data.excerpt ? `: ${note.data.excerpt}` : ""}`,
     ),
     "",
-    "## Zettles",
-    "",
-    ...zettles.map(
-      (zettle) =>
-        `- [${zettle.data.title}](${base}/zettles/${zettle.id}.md)${zettle.data.excerpt ? `: ${zettle.data.excerpt}` : ""}`,
-    ),
-    "",
     "## Feeds",
     "",
     `- [RSS: posts](${base}/rss.xml)`,
     `- [RSS: weeknotes](${base}/weeknotes/rss.xml)`,
-    `- [RSS: zettles](${base}/zettles/rss.xml)`,
     `- [Sitemap](${base}/sitemap-index.xml)`,
     "",
     "## Optional",
     "",
-    `- [Full content](${base}/llms-full.txt): every post, weeknote and zettle in one markdown file`,
+    `- [Full content](${base}/llms-full.txt): every post and weeknote in one markdown file`,
     "",
   ];
 

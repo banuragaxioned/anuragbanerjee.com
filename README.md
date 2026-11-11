@@ -1,6 +1,6 @@
 # anuragbanerjee.com
 
-Personal site of Anurag Banerjee — posts, weeknotes, and zettles.
+Personal site of Anurag Banerjee — posts and weeknotes.
 
 Built with [Astro](https://astro.build), [Tailwind CSS](https://tailwindcss.com), and [shadcn/ui](https://ui.shadcn.com), fully static, deployed to [Vercel](https://vercel.com).
 
@@ -14,7 +14,6 @@ Built with [Astro](https://astro.build), [Tailwind CSS](https://tailwindcss.com)
 │   ├── content/            # markdown content
 │   │   ├── posts/          # long-form posts (migrated from Medium)
 │   │   ├── weeknotes/      # weekly notes
-│   │   ├── zettles/        # short notes (synced from Obsidian)
 │   │   └── drafts/         # unpublished drafts (not built)
 │   ├── content.config.ts   # content collection schemas
 │   ├── layouts/
@@ -48,6 +47,7 @@ A [Lefthook](https://lefthook.dev) pre-commit hook lints and formats staged file
 
 ## Content and links
 
-- Posts, weeknotes and zettles take an optional `updated` date in their frontmatter. When set it appears on the page, in `article:modified_time` and in the structured data's `dateModified`; `date` stays the published date.
-- Feeds: `/rss.xml` (posts), `/weeknotes/rss.xml` and `/zettles/rss.xml`. A zettle without a `date` uses the timestamp in its id.
+- Posts and weeknotes take an optional `updated` date in their frontmatter. When set it appears on the page, in `article:modified_time` and in the structured data's `dateModified`; `date` stays the published date.
+- Feeds: `/rss.xml` (posts) and `/weeknotes/rss.xml`.
+- Old `/zettles/` URLs redirect to the homepage (zettles were removed).
 - Short links (`/github`, `/x`, `/linkedin`, `/instagram`, `/rss`, `/blog`) are redirects in `vercel.json`. Keep the social ones in step with `socialLinks` in `src/lib/site.ts`.

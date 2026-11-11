@@ -9,7 +9,7 @@ interface Props {
   /** Replaces the whole <title> (no site-name suffix), e.g. on the homepage */
   fullTitle?: string;
   description?: string;
-  /** og:type — "article" for posts/weeknotes/zettles */
+  /** og:type — "article" for posts and weeknotes */
   type?: "website" | "article";
   /** ISO date for article:published_time */
   publishedTime?: string;
@@ -69,7 +69,6 @@ const robots = noindex
 const navLinks = [
   { href: "/posts/", label: "Posts" },
   { href: "/weeknotes/", label: "Weeknotes" },
-  { href: "/zettles/", label: "Zettles" },
   { href: "/resume/", label: "Resume" },
 ];
 ---
@@ -111,12 +110,6 @@ const navLinks = [
       type="application/rss+xml"
       title={`Weeknotes · ${SITE.name}`}
       href={new URL("weeknotes/rss.xml", Astro.site)}
-    />
-    <link
-      rel="alternate"
-      type="application/rss+xml"
-      title={`Zettles · ${SITE.name}`}
-      href={new URL("zettles/rss.xml", Astro.site)}
     />
     {markdownUrl && (
       <link
