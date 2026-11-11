@@ -49,5 +49,6 @@ A [Lefthook](https://lefthook.dev) pre-commit hook lints and formats staged file
 
 - Posts and weeknotes take an optional `updated` date in their frontmatter. When set it appears on the page, in `article:modified_time` and in the structured data's `dateModified`; `date` stays the published date.
 - Feeds: `/rss.xml` (posts) and `/weeknotes/rss.xml`.
+- Images for posts and weeknotes live in `src/assets/<collection>/<slug>/` and are referenced with a relative path and alt text, e.g. `![A short description](../../assets/posts/my-post/photo.jpg)`. Astro optimises them and adds width and height.
 - Old `/zettles/` URLs redirect to the homepage (zettles were removed).
 - Short links (`/github`, `/x`, `/linkedin`, `/instagram`, `/rss`, `/blog`) are redirects in `vercel.json`. Keep the social ones in step with `socialLinks` in `src/lib/site.ts`.

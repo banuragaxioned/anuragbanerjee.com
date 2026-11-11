@@ -6,7 +6,7 @@ date: 2021-12-16
 
 You are probably here because you’ve had the word “Jamstack” (or decoupling) being thrown at you many times, or you have been having a case of FOMO 😮 when it comes to this buzzword, or maybe everything you search for returns something very technical. No, it’s not just you.
 
-![](https://cdn-images-1.medium.com/max/1024/1*n0rMtkEH7koLvDrQWBE_WQ.jpeg)
+![Jars of homemade jam in different colours lined up on a wooden shelf.](../../assets/posts/what-is-jamstack-for-everyone-else/jars-of-jam-on-a-shelf.jpg)
 
 _No, not that kind of a jam_
 
@@ -28,7 +28,7 @@ When the user hits your website, they don’t have to wait for the server to com
 
 These are often served from a Content Distribution Network (CDN) like Cloudflare, Amazon CloudFront, Fastly, etc. which are geographically distributed networks optimized (including but not limited to caching) to serve assets to users from a location closest to the user which improves the web performance of your site.
 
-![](https://cdn-images-1.medium.com/max/788/1*nV00aivLPNFBrAuN60Uhog.png)
+![World map with blue dots marking Cloudflare's network locations, densest across North America, Europe and Asia.](../../assets/posts/what-is-jamstack-for-everyone-else/cloudflare-network-map.png)
 
 _This is what Cloudflare’s network looks like — in over 250 cities in 100 countries brings your content closer to your users than ever before_
 

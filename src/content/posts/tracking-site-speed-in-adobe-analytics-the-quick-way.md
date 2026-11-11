@@ -6,7 +6,7 @@ date: 2021-06-20
 
 There are more than enough ways to set site speed tracking on your web property. I’m going to share a quick and easy way to implement this to get broadly accurate data to support your analysis and user experience.
 
-![](https://cdn-images-1.medium.com/max/800/0*Q5iNk5QHvW0IxL0Y)
+![A tablet on a desk showing a web analytics dashboard with a pie chart and a line graph, next to a coffee cup.](../../assets/posts/tracking-site-speed-in-adobe-analytics-the-quick-way/analytics-dashboard-on-a-tablet.jpg)
 
 ### Install the plug-in
 

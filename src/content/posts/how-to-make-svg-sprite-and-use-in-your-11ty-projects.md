@@ -14,7 +14,7 @@ What we are going to do here is: take a bunch of individual SVGs (stored with yo
 
 You might ask — why would someone want to do that? They have infinitely scalability independent of the device size/resolution — for the same file size (and a smaller file size as compared to an image which needs to be retina display ready). You can color, animate and edit them (via scripting or by hand) to make and look/behave exactly how you want them to. And with what I’m exploring below — you’d be able to get faster performance as you don’t need to make any HTTP request (let alone multiple) to get all your icons, logos, illustrations in your website. Faster loading time means better webpage performance, higher search engine ranking and most importantly, an improved user experience.
 
-![](https://cdn-images-1.medium.com/max/800/0*1QdTfQ9KvpSpBe3z)
+![Close-up of CSS code on a dark screen, showing border-image and background properties.](../../assets/posts/how-to-make-svg-sprite-and-use-in-your-11ty-projects/css-code-on-a-screen.jpg)
 
 Photo by [Maik Jonietz](https://unsplash.com/@der_maik_?utm_source=medium&utm_medium=referral) on [Unsplash](https://unsplash.com?utm_source=medium&utm_medium=referral)
 
@@ -22,9 +22,9 @@ I was part of a conversation (as an observer) where the topic of discussion was 
 
 This is also reminds of me a game that I used play back in the day called [Little Fighter 2](https://lf2.net/) from the 90s. I recalled being fascinated to find out how the game was built (in a very general/vague way) by digging into their asset files to find —guess what .. sprites! — using which they were able to stitch them together to animate the characters — their movements, actions/interactions and skills.
 
-![](https://cdn-images-1.medium.com/max/600/1*Y8JNq8byazSCNNyIEwI9uw.png)
+![A sprite sheet of a blond fighter character in many poses, laid out in a grid on a black background.](../../assets/posts/how-to-make-svg-sprite-and-use-in-your-11ty-projects/character-sprite-sheet.png)
 
-![](https://cdn-images-1.medium.com/max/600/0*NrE7oYwStBZ7Urj6.gif)
+![A scene from a side-scrolling fighting game, with pixel-art characters battling on a city street and health bars along the top.](../../assets/posts/how-to-make-svg-sprite-and-use-in-your-11ty-projects/fighting-game-scene.gif)
 
 Left: Sprite (.bmp) file of a character. Right: Individual spirte “blocks” are stringed together to make animation.
 
@@ -65,7 +65,7 @@ Forked copy from Max’s repo before some more recent changes: [https://github.c
 
 Once the rebuild is done, you should see something like the below screenshot 🙂
 
-![](https://cdn-images-1.medium.com/max/800/1*akuSG6Sv3wJenGc-05v_kw.png)
+![Test page showing SVG icons rendered four ways: styled by the project's CSS, at default size, with a purple fill, and as a red GitHub logo.](../../assets/posts/how-to-make-svg-sprite-and-use-in-your-11ty-projects/svg-shortcode-examples.png)
 
 Above snippets being put in action
 

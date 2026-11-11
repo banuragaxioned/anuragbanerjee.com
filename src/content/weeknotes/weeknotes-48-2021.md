@@ -11,7 +11,7 @@ author: "Anurag Banerjee"
 
 ### Weeknotes 48–2021
 
-![](https://cdn-images-1.medium.com/max/800/1*Txh4nCT2aKJd-ojERrI6pQ.png)
+![A bronze Amor Fati medallion resting on ice and twigs.](../../assets/weeknotes/weeknotes-48-2021/amor-fati-medallion.png)
 
 Picture credit: [Daily Stoic](https://store.dailystoic.com/products/amor-fati-medallion-1)
 

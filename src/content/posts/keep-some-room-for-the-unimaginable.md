@@ -18,7 +18,7 @@ While you can only control your own actions, you don’t have to make it harder 
 
 I’m going to start by slightly turning up my “bitchy resting face”. I think the first step towards that is to stop drowning my headspace with headphones almost every waking minute of the day. And smiling more! I might not be able to start conversations just yet, but I can at least greet the surprises in life with open arms.
 
-![](https://cdn-images-1.medium.com/max/800/1*cB2k_0F_RCkBLf4G5F-rHQ.jpeg)
+![A hand holding up a small Hello! sticker with a smiley face, against a dark blurred background.](../../assets/posts/keep-some-room-for-the-unimaginable/hello-sticker-held-in-a-hand.jpg)
 
 Photo by [Vladislav Klapin](https://unsplash.com/@lemonvlad?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) on [Unsplash](https://unsplash.com/s/photos/smiley?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)
 

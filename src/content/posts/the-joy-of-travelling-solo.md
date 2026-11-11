@@ -10,7 +10,7 @@ I was 24 when I first travelled alone. There were two parts to this trip —�
 
 I didn’t know what to do or expect. Hadn’t planned anything. No itinerary. And it was perfect. I walked around the city — old and new, visited beaches and sat on shore, tried different food and lots of sweet lime soda.
 
-![](https://cdn-images-1.medium.com/max/800/1*pyvkwrRVYde9Sh7vJgAiyQ.jpeg)
+![Hazy orange sky with a low sun over a field and rows of palm trees in Goa.](../../assets/posts/the-joy-of-travelling-solo/goa-sunrise-over-palm-fields.jpg)
 
 Off-road Goa
 
@@ -18,7 +18,7 @@ What stuck with me the most was the walking part, particularly to my new accommo
 
 Fast forward 5 years, I have travelled to Gangtok, Kolkata (for the first time, despite being a Bengali), a month long backpacking around Europe in 2016 (Paris, Munich, Vienna, Prague, Berlin, Amsterdam), Kuala Lumpur, Kathmandu, Thimphu, Paro, back to Europe again in 2019— this time Zürich, Munich, Budapest, Warsaw, Brno, Bratislava, Ljubljana, Prague, Krakow.
 
-![](https://cdn-images-1.medium.com/max/800/1*3DRFcXIjnmaco1iokRUpuQ.jpeg)
+![Crowds walking across a cobbled square lined with colourful buildings and a clock tower, in Prague.](../../assets/posts/the-joy-of-travelling-solo/prague-old-town-square.jpg)
 
 Magical Prague
 
@@ -38,7 +38,7 @@ I am able to find time to journal everyday, go for long walks, eat (and sometime
 
 > — Arthur Schopenhauer
 
-![](https://cdn-images-1.medium.com/max/800/1*n1d_ejciUzLWEA4OHDaEXg.jpeg)
+![Silhouette of a person standing alone against a pink and teal sunset sky.](../../assets/posts/the-joy-of-travelling-solo/silhouette-against-a-pink-sunset.jpg)
 
 Photo by [Rakicevic Nenad](https://www.pexels.com/@rakicevic-nenad-233369?utm_content=attributionCopyText&utm_medium=referral&utm_source=pexels) from [Pexels](https://www.pexels.com/photo/silhouette-of-human-with-sunset-background-804172/?utm_content=attributionCopyText&utm_medium=referral&utm_source=pexels)
 
@@ -54,7 +54,7 @@ It helped me appreciate the beautiful mish mash diversity and similarity in us h
 
 I like cold place. I mean, Single digit Celsius cold 🧊. Maybe it is the humid Mumbai weather which turned me into this, or maybe it was my self-conditioning to prefer drinking cold water over room temperature for over two decades 😂. Now you if you look at the places I have been to (outside of places I have called home), you can see a pattern there.
 
-![](https://cdn-images-1.medium.com/max/800/1*ABdeUbnIE5pHjn8ZYK3g1w.jpeg)
+![A misty valley with a lake between snow-dusted mountains near Nathu La in Sikkim.](../../assets/posts/the-joy-of-travelling-solo/snowy-mountains-near-nathu-la.jpg)
 
 On the way back from Nathu La, Sikkim
 

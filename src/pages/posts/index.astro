@@ -9,7 +9,8 @@ const allPosts = await getCollection("posts");
 const posts = allPosts.toSorted(
   (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
 );
-const description = "Essays and articles by Anurag Banerjee.";
+const description =
+  "Writing by Anurag Banerjee on technology, work and life, from web development to leading teams.";
 const schema = graph(
   collectionNode({
     description,
