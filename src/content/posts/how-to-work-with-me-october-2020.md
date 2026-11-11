@@ -2,6 +2,7 @@
 title: How to Work With Me
 excerpt: A “user” manual for working with me. I will be updating this on a regular basis. This is inspired by the article This is How You…
 date: 2018-06-12
+updated: 2020-06-01
 ---
 
 A “user” manual for working with me. I will be updating this on a regular basis. This is inspired by the article [This is How You Revolutionize the Way Your Team Works Together… And All It Takes is 15 Minutes](https://www.linkedin.com/pulse/how-you-revolutionize-way-your-team-works-together-all-david-politis/) by David Politis, Founder and CEO at BetterCloud.
