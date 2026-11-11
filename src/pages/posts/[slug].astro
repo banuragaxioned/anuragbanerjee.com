@@ -3,6 +3,7 @@ import { getCollection, render } from "astro:content";
 
 import { Badge } from "@/components/ui/badge";
 import Layout from "@/layouts/layout.astro";
+import { articleNode, breadcrumbNode, countWords, graph } from "@/lib/schema";
 
 export async function getStaticPaths() {
   const posts = await getCollection("posts");
@@ -21,19 +22,24 @@ const formattedDate = post.data.date.toLocaleDateString("en-US", {
   day: "numeric",
 });
 
-const schema = {
-  "@context": "https://schema.org",
-  "@type": "BlogPosting",
-  headline: post.data.title,
-  description: post.data.excerpt,
-  datePublished: post.data.date.toISOString(),
-  author: {
-    "@type": "Person",
-    name: "Anurag Banerjee",
-    url: "https://anuragbanerjee.com/",
-  },
-  url: `https://anuragbanerjee.com/posts/${post.id}/`,
-};
+const path = `/posts/${post.id}/`;
+const ogPath = `/posts/${post.id}.og.png`;
+
+const schema = graph(
+  articleNode({
+    description: post.data.excerpt,
+    image: ogPath,
+    path,
+    published: post.data.date,
+    title: post.data.title,
+    wordCount: countWords(post.body),
+  }),
+  breadcrumbNode([
+    { name: "Home", path: "/" },
+    { name: "Posts", path: "/posts/" },
+    { name: post.data.title, path },
+  ]),
+);
 ---
 
 <Layout
@@ -42,7 +48,7 @@ const schema = {
   type="article"
   publishedTime={post.data.date.toISOString()}
   markdownUrl={`/posts/${post.id}.md`}
-  ogImage={`/posts/${post.id}.og.png`}
+  ogImage={ogPath}
   schema={schema}
 >
   <article>

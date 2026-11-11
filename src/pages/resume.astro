@@ -2,6 +2,12 @@
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import Layout from "@/layouts/layout.astro";
+import {
+  breadcrumbNode,
+  graph,
+  personNode,
+  profilePageNode,
+} from "@/lib/schema";
 
 const strengths = [
   "Technical Leadership",
@@ -133,12 +139,32 @@ const languages = [
   "Hindi (limited working)",
   "Bengali (limited working)",
 ];
+const description =
+  "Resume of Anurag Banerjee — Chief Operating Officer at Axioned.";
+const schema = graph(
+  personNode({
+    alumniOf: education.map((entry) => ({
+      "@type": "EducationalOrganization",
+      name: entry.school,
+    })),
+    hasCredential: certifications.map((name) => ({
+      "@type": "EducationalOccupationalCredential",
+      name,
+    })),
+    knowsAbout: strengths,
+    knowsLanguage: languages.map((language) =>
+      language.replace(/\s*\(.*\)$/u, ""),
+    ),
+  }),
+  profilePageNode({ description, name: "Resume", path: "/resume/" }),
+  breadcrumbNode([
+    { name: "Home", path: "/" },
+    { name: "Resume", path: "/resume/" },
+  ]),
+);
 ---
 
-<Layout
-  title="Resume"
-  description="Resume of Anurag Banerjee — Chief Operating Officer at Axioned."
->
+<Layout title="Resume" {description} {schema}>
   <section>
     <h1 class="text-3xl font-semibold tracking-tight">Resume</h1>
     <p class="mt-4">Chief Operating Officer at Axioned · Mumbai, India</p>

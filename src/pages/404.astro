@@ -3,7 +3,7 @@ import { buttonVariants } from "@/components/ui/button";
 import Layout from "@/layouts/layout.astro";
 ---
 
-<Layout title="Page not found" description="This page doesn't exist.">
+<Layout title="Page not found" description="This page doesn't exist." noindex>
   <section class="flex flex-col items-start justify-center py-16">
     <p
       class="text-sm font-medium tracking-wide text-muted-foreground uppercase"
@@ -19,7 +19,7 @@ import Layout from "@/layouts/layout.astro";
     </p>
     <div class="mt-8 flex flex-wrap gap-3">
       <a href="/" class={buttonVariants({ variant: "default" })}>Go home</a>
-      <a href="/posts" class={buttonVariants({ variant: "outline" })}
+      <a href="/posts/" class={buttonVariants({ variant: "outline" })}
         >Browse posts</a
       >
     </div>

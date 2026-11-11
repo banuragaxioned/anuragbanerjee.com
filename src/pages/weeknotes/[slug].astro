@@ -4,6 +4,7 @@ import { getCollection, render } from "astro:content";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import Layout from "@/layouts/layout.astro";
+import { articleNode, breadcrumbNode, countWords, graph } from "@/lib/schema";
 
 export async function getStaticPaths() {
   const weeknotes = await getCollection("weeknotes");
@@ -22,19 +23,24 @@ const formattedDate = note.data.date.toLocaleDateString("en-US", {
   day: "numeric",
 });
 
-const schema = {
-  "@context": "https://schema.org",
-  "@type": "BlogPosting",
-  headline: note.data.title,
-  description: note.data.excerpt,
-  datePublished: note.data.date.toISOString(),
-  author: {
-    "@type": "Person",
-    name: "Anurag Banerjee",
-    url: "https://anuragbanerjee.com/",
-  },
-  url: `https://anuragbanerjee.com/weeknotes/${note.id}/`,
-};
+const path = `/weeknotes/${note.id}/`;
+const ogPath = `/weeknotes/${note.id}.og.png`;
+
+const schema = graph(
+  articleNode({
+    description: note.data.excerpt,
+    image: ogPath,
+    path,
+    published: note.data.date,
+    title: note.data.title,
+    wordCount: countWords(note.body),
+  }),
+  breadcrumbNode([
+    { name: "Home", path: "/" },
+    { name: "Weeknotes", path: "/weeknotes/" },
+    { name: note.data.title, path },
+  ]),
+);
 ---
 
 <Layout
@@ -43,6 +49,7 @@ const schema = {
   type="article"
   publishedTime={note.data.date.toISOString()}
   markdownUrl={`/weeknotes/${note.id}.md`}
+  ogImage={ogPath}
   schema={schema}
 >
   <article>

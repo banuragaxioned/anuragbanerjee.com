@@ -9,6 +9,8 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import Layout from "@/layouts/layout.astro";
+import { graph, personNode, profilePageNode, websiteNode } from "@/lib/schema";
+import { SITE, socialLinks } from "@/lib/site";
 
 const allPosts = await getCollection("posts");
 const posts = allPosts
@@ -45,48 +47,30 @@ const days = [
   },
 ];
 
-// contact happens via socials — no email on purpose
-const socialLinks = [
-  { href: "https://x.com/ianuragbanerjee", label: "X" },
-  { href: "https://github.com/imanuragbanerjee", label: "GitHub" },
-  { href: "https://linkedin.com/in/imanuragbanerjee", label: "LinkedIn" },
-  { href: "https://www.instagram.com/imanuragbanerjee", label: "Instagram" },
-];
-
 // GitHub is a profile, not a contact channel
 const contactLinks = socialLinks.filter((link) => link.label !== "GitHub");
 
-const schema = [
-  {
-    "@context": "https://schema.org",
-    "@type": "Person",
-    name: "Anurag Banerjee",
-    url: "https://anuragbanerjee.com/",
-    jobTitle: "Chief Operating Officer",
-    worksFor: {
-      "@type": "Organization",
-      name: "Axioned",
-      url: "https://axioned.com/",
+const schema = graph(
+  personNode({
+    alumniOf: {
+      "@type": "EducationalOrganization",
+      name: "Sikkim Manipal University",
     },
-    address: {
-      "@type": "PostalAddress",
-      addressLocality: "Mumbai",
-      addressCountry: "IN",
-    },
-    alumniOf: "Sikkim Manipal University",
-    sameAs: socialLinks.map((link) => link.href),
-  },
-  {
-    "@context": "https://schema.org",
-    "@type": "WebSite",
-    name: "Anurag Banerjee",
-    url: "https://anuragbanerjee.com/",
-    author: { "@type": "Person", name: "Anurag Banerjee" },
-  },
-];
+  }),
+  websiteNode(),
+  profilePageNode({
+    description: SITE.description,
+    name: SITE.name,
+    path: "/",
+  }),
+);
 ---
 
-<Layout schema={schema} markdownUrl="/index.md">
+<Layout
+  fullTitle={`${SITE.name} · ${SITE.jobTitle} at Axioned`}
+  schema={schema}
+  markdownUrl="/index.md"
+>
   <section>
     <p
       class="text-sm font-medium tracking-wide text-muted-foreground uppercase"
@@ -111,10 +95,10 @@ const schema = [
       tools, and poking at whatever's new in tech.
     </p>
     <div class="mt-8 flex flex-wrap gap-3">
-      <a href="/posts" class={buttonVariants({ variant: "default" })}
+      <a href="/posts/" class={buttonVariants({ variant: "default" })}
         >Read the blog</a
       >
-      <a href="/resume" class={buttonVariants({ variant: "outline" })}
+      <a href="/resume/" class={buttonVariants({ variant: "outline" })}
         >See my resume</a
       >
     </div>
@@ -144,7 +128,7 @@ const schema = [
         Latest writing
       </h2>
       <a
-        href="/posts"
+        href="/posts/"
         class="text-sm text-muted-foreground transition-colors hover:text-foreground"
         >All posts →</a
       >
@@ -179,8 +163,8 @@ const schema = [
       Liverpool FC supporter — I co-founded and ran
       <span class="text-foreground">The Red Legions</span>, an LFC fan site, for
       seven years. I travel solo when I can, keep a public notebook of
-      <a href="/weeknotes" class="underline underline-offset-4">weeknotes</a>
-      and <a href="/zettles" class="underline underline-offset-4">zettles</a>,
+      <a href="/weeknotes/" class="underline underline-offset-4">weeknotes</a>
+      and <a href="/zettles/" class="underline underline-offset-4">zettles</a>,
       and post random things. All views are my own. 🇮🇳 🗺️ 🎧 ⚽ 🍛🍕🍳🍔
     </p>
   </section>

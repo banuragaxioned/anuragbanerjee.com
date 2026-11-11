@@ -3,11 +3,25 @@ import { getCollection } from "astro:content";
 
 import EntryList from "@/components/entry-list.astro";
 import Layout from "@/layouts/layout.astro";
+import { breadcrumbNode, collectionNode, graph } from "@/lib/schema";
 
 const zettles = await getCollection("zettles");
+const description = "Short notes by Anurag Banerjee.";
+const schema = graph(
+  collectionNode({
+    description,
+    entries: zettles.map((zettle) => `/zettles/${zettle.id}/`),
+    name: "Zettles",
+    path: "/zettles/",
+  }),
+  breadcrumbNode([
+    { name: "Home", path: "/" },
+    { name: "Zettles", path: "/zettles/" },
+  ]),
+);
 ---
 
-<Layout title="Zettles" description="Short notes by Anurag Banerjee.">
+<Layout title="Zettles" {description} {schema}>
   <h1 class="mb-8 text-3xl font-semibold tracking-tight">Zettles</h1>
   <EntryList
     entries={zettles.map((zettle) => ({
