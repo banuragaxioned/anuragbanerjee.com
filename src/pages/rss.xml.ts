@@ -18,7 +18,8 @@ export async function GET(context: APIContext) {
   return await rss({
     ...feedBase(site, "rss.xml"),
     title: "Anurag Banerjee",
-    description: "Essays and articles by Anurag Banerjee.",
+    description:
+      "Writing by Anurag Banerjee on technology, work and life, from web development to leading teams.",
     items: posts.map((post) => ({
       title: post.data.title,
       description: post.data.excerpt,
