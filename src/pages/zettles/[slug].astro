@@ -1,7 +1,8 @@
 ---
 import { getCollection, render } from "astro:content";
-import Layout from "@/layouts/layout.astro";
+
 import { Badge } from "@/components/ui/badge";
+import Layout from "@/layouts/layout.astro";
 
 export async function getStaticPaths() {
   const zettles = await getCollection("zettles");
@@ -42,21 +43,17 @@ const schema = {
       <h1 class="text-3xl font-semibold tracking-tight text-balance">
         {zettle.data.title}
       </h1>
-      {
-        zettle.data.date && (
-          <Badge variant="secondary" className="mt-4">
-            <time datetime={zettle.data.date.toISOString()}>
-              {zettle.data.date.toLocaleDateString("en-US", {
-                year: "numeric",
-                month: "long",
-                day: "numeric",
-              })}
-            </time>
-          </Badge>
-        )
-      }
+      {zettle.data.date && <Badge variant="secondary" className="mt-4">
+        <time datetime={zettle.data.date.toISOString()}>
+          {zettle.data.date.toLocaleDateString("en-US", {
+            year: "numeric",
+            month: "long",
+            day: "numeric",
+          })}
+        </time>
+      </Badge>}
     </header>
-    <div class="prose prose-neutral dark:prose-invert max-w-none">
+    <div class="prose max-w-none prose-neutral dark:prose-invert">
       <Content />
     </div>
   </article>

@@ -1,14 +1,19 @@
-import { getCollection } from "astro:content";
 import type { APIRoute } from "astro";
+import { getCollection } from "astro:content";
 
 // llms.txt per https://llmstxt.org — a markdown map of the site for AI agents
 export const GET: APIRoute = async ({ site }) => {
-  const base = site!.href.replace(/\/$/, "");
+  if (!site) {
+    throw new Error("`site` must be set in astro.config.mjs");
+  }
+  const base = site.href.replace(/\/$/u, "");
 
-  const posts = (await getCollection("posts")).sort(
+  const allPosts = await getCollection("posts");
+  const posts = allPosts.toSorted(
     (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
   );
-  const weeknotes = (await getCollection("weeknotes")).sort(
+  const allWeeknotes = await getCollection("weeknotes");
+  const weeknotes = allWeeknotes.toSorted(
     (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
   );
   const zettles = await getCollection("zettles");

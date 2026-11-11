@@ -1,12 +1,16 @@
-import { getCollection } from "astro:content";
 import type { APIRoute } from "astro";
+import { getCollection } from "astro:content";
 
 // Markdown version of the homepage, for AI agents
 export const GET: APIRoute = async ({ site }) => {
-  const base = site!.href.replace(/\/$/, "");
+  if (!site) {
+    throw new Error("`site` must be set in astro.config.mjs");
+  }
+  const base = site.href.replace(/\/$/u, "");
 
-  const posts = (await getCollection("posts"))
-    .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+  const allPosts = await getCollection("posts");
+  const posts = allPosts
+    .toSorted((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
     .slice(0, 3);
 
   const md = [

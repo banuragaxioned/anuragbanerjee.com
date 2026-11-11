@@ -6,10 +6,17 @@
     "astro": "astro",
     "build": "astro build",
     "dev": "astro dev",
-    "format": "prettier --write .",
+    "format": "oxfmt .",
     "preview": "astro preview",
     "taze": "taze",
-    "taze:fix": "taze -w -i"
+    "taze:fix": "taze -w -i",
+    "check": "oxfmt . && oxlint .",
+    "format:check": "oxfmt --check .",
+    "lint": "oxlint .",
+    "lint:fix": "oxlint --fix .",
+    "prepare": "lefthook install || true",
+    "typecheck": "astro check",
+    "verify": "bun run format:check && bun run lint && bun run typecheck && bun run build"
   },
   "dependencies": {
     "@astrojs/react": "^7.1.7",
@@ -33,11 +40,17 @@
     "tw-animate-css": "^1.4.0"
   },
   "devDependencies": {
+    "@astrojs/check": "^0.9.12",
+    "@astrojs/compiler-rs": "^0.5.3",
     "@types/react": "^19.3.0",
     "@types/react-dom": "^19.3.0",
-    "prettier": "^3.9.10",
-    "prettier-plugin-astro": "^1.1.2",
+    "lefthook": "^2.2.2",
+    "oxfmt": "^0.78.0",
+    "oxlint": "^1.93.0",
+    "oxlint-tsgolint": "^7.0.2006",
     "sharp": "^0.35.5",
-    "taze": "^21.3.0"
+    "taze": "^21.3.0",
+    "typescript": "^6",
+    "ultracite": "^8.1.1"
   }
 }
