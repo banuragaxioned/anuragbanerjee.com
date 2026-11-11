@@ -1,9 +1,11 @@
 ---
 import { getCollection } from "astro:content";
-import Layout from "@/layouts/layout.astro";
-import EntryList from "@/components/entry-list.astro";
 
-const weeknotes = (await getCollection("weeknotes")).sort(
+import EntryList from "@/components/entry-list.astro";
+import Layout from "@/layouts/layout.astro";
+
+const allWeeknotes = await getCollection("weeknotes");
+const weeknotes = allWeeknotes.toSorted(
   (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
 );
 ---

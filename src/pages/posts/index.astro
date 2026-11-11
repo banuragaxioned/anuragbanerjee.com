@@ -1,9 +1,11 @@
 ---
 import { getCollection } from "astro:content";
-import Layout from "@/layouts/layout.astro";
-import EntryList from "@/components/entry-list.astro";
 
-const posts = (await getCollection("posts")).sort(
+import EntryList from "@/components/entry-list.astro";
+import Layout from "@/layouts/layout.astro";
+
+const allPosts = await getCollection("posts");
+const posts = allPosts.toSorted(
   (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
 );
 ---

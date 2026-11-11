@@ -27,12 +27,19 @@ Built with [Astro](https://astro.build), [Tailwind CSS](https://tailwindcss.com)
 
 Uses [Bun](https://bun.sh) as the package manager and script runner.
 
-| Command            | Action                                     |
-| :----------------- | :----------------------------------------- |
-| `bun install`      | Install dependencies                       |
-| `bun run dev`      | Start local dev server at `localhost:4321` |
-| `bun run build`    | Build the production site to `./dist/`     |
-| `bun run preview`  | Preview the build locally                  |
-| `bun run format`   | Format with Prettier                       |
-| `bun run taze`     | Report available dependency updates        |
-| `bun run taze:fix` | Update package.json and install            |
+| Command             | Action                                           |
+| :------------------ | :----------------------------------------------- |
+| `bun install`       | Install dependencies and the Git hooks           |
+| `bun run dev`       | Start local dev server at `localhost:4321`       |
+| `bun run build`     | Build the production site to `./dist/`           |
+| `bun run preview`   | Preview the build locally                        |
+| `bun run format`    | Format with [oxfmt](https://oxc.rs)              |
+| `bun run lint`      | Lint with [oxlint](https://oxc.rs) (type-aware)  |
+| `bun run lint:fix`  | Lint and apply safe autofixes                    |
+| `bun run check`     | Format, then lint                                |
+| `bun run typecheck` | Type-check `.ts` and `.astro` with `astro check` |
+| `bun run verify`    | Format check, lint, typecheck and build          |
+| `bun run taze`      | Report available dependency updates              |
+| `bun run taze:fix`  | Update package.json and install                  |
+
+A [Lefthook](https://lefthook.dev) pre-commit hook lints and formats staged files.

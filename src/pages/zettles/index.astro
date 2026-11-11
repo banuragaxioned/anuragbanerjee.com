@@ -1,7 +1,8 @@
 ---
 import { getCollection } from "astro:content";
-import Layout from "@/layouts/layout.astro";
+
 import EntryList from "@/components/entry-list.astro";
+import Layout from "@/layouts/layout.astro";
 
 const zettles = await getCollection("zettles");
 ---

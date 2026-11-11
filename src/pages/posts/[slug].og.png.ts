@@ -1,5 +1,5 @@
+import type { APIRoute, InferGetStaticPropsType } from "astro";
 import { getCollection } from "astro:content";
-import type { APIRoute } from "astro";
 import sharp from "sharp";
 
 export async function getStaticPaths() {
@@ -9,6 +9,8 @@ export async function getStaticPaths() {
     props: { post },
   }));
 }
+
+type Props = InferGetStaticPropsType<typeof getStaticPaths>;
 
 const escapeXml = (s: string) =>
   s
@@ -21,23 +23,25 @@ const escapeXml = (s: string) =>
 const wrapTitle = (title: string, maxChars = 30, maxLines = 3): string[] => {
   const lines: string[] = [];
   let current = "";
-  for (const word of title.split(/\s+/)) {
-    if (current && (current + " " + word).length > maxChars) {
+  for (const word of title.split(/\s+/u)) {
+    if (current && `${current} ${word}`.length > maxChars) {
       lines.push(current);
       current = word;
     } else {
       current = current ? `${current} ${word}` : word;
     }
   }
-  if (current) lines.push(current);
+  if (current) {
+    lines.push(current);
+  }
   if (lines.length > maxLines) {
     lines.length = maxLines;
-    lines[maxLines - 1] = lines[maxLines - 1] + "…";
+    lines[maxLines - 1] += "…";
   }
   return lines;
 };
 
-export const GET: APIRoute = async ({ props }) => {
+export const GET: APIRoute<Props> = async ({ props }) => {
   const { post } = props;
 
   const lines = wrapTitle(post.data.title);

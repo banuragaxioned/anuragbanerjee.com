@@ -1,5 +1,5 @@
+import type { APIRoute, InferGetStaticPropsType } from "astro";
 import { getCollection } from "astro:content";
-import type { APIRoute } from "astro";
 
 export async function getStaticPaths() {
   const weeknotes = await getCollection("weeknotes");
@@ -9,7 +9,9 @@ export async function getStaticPaths() {
   }));
 }
 
-export const GET: APIRoute = ({ props }) => {
+type Props = InferGetStaticPropsType<typeof getStaticPaths>;
+
+export const GET: APIRoute<Props> = ({ props }) => {
   const { note } = props;
   const md = [
     `# ${note.data.title}`,

@@ -7,7 +7,9 @@ import { next, rewrite } from "@vercel/functions";
 // override an existing static file, so this has to happen here.
 export default function middleware(request: Request) {
   const accept = request.headers.get("accept") ?? "";
-  if (!accept.includes("text/markdown")) return next();
+  if (!accept.includes("text/markdown")) {
+    return next();
+  }
 
   const url = new URL(request.url);
 
@@ -17,8 +19,8 @@ export default function middleware(request: Request) {
   }
 
   // content routes only — exactly one extension-less segment after the section
-  const path = url.pathname.replace(/\/$/, "");
-  if (/^\/(posts|weeknotes|zettles)\/[^/.]+$/.test(path)) {
+  const path = url.pathname.replace(/\/$/u, "");
+  if (/^\/(?:posts|weeknotes|zettles)\/[^/.]+$/u.test(path)) {
     url.pathname = `${path}.md`;
     return rewrite(url);
   }
