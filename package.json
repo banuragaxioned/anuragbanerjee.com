@@ -16,7 +16,8 @@
     "lint:fix": "oxlint --fix .",
     "prepare": "lefthook install || true",
     "typecheck": "astro check",
-    "verify": "bun run format:check && bun run lint && bun run typecheck && bun run build"
+    "verify": "bun run format:check && bun run lint && bun run typecheck && bun run build",
+    "assets": "bun scripts/generate-brand-assets.ts"
   },
   "dependencies": {
     "@astrojs/react": "^7.1.7",

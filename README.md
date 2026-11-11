@@ -18,6 +18,7 @@ Built with [Astro](https://astro.build), [Tailwind CSS](https://tailwindcss.com)
 │   │   └── drafts/         # unpublished drafts (not built)
 │   ├── content.config.ts   # content collection schemas
 │   ├── layouts/
+│   ├── lib/                # site constants, JSON-LD builders, share cards, brand mark
 │   ├── pages/
 │   └── styles/
 └── astro.config.mjs
@@ -39,6 +40,7 @@ Uses [Bun](https://bun.sh) as the package manager and script runner.
 | `bun run check`     | Format, then lint                                |
 | `bun run typecheck` | Type-check `.ts` and `.astro` with `astro check` |
 | `bun run verify`    | Format check, lint, typecheck and build          |
+| `bun run assets`    | Regenerate the favicon, icons and share card     |
 | `bun run taze`      | Report available dependency updates              |
 | `bun run taze:fix`  | Update package.json and install                  |
 
