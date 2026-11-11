@@ -38,13 +38,13 @@ _EDIT: Max’s repo now uses_ [_eleventy-plugin-svg-sprite_](https://www.npmjs.c
 
 So I started off by [forking the repo](https://github.com/banuragprdxn/eleventastic) and then tried to understand how the author had configured all the SVGs in the `src/assets/icons` directory to be bundled into a symbol sprite file. Neat!
 
-Forked copy from Max’s repo before some more recent changes: [https://github.com/banuragaxioned/eleventastic/blob/master/utils/iconsprite.js](https://github.com/banuragaxioned/eleventastic/blob/master/utils/iconsprite.js)
+Forked copy from Max’s repo before some more recent changes: [https://github.com/imanuragbanerjee/eleventastic/blob/master/utils/iconsprite.js](https://github.com/imanuragbanerjee/eleventastic/blob/master/utils/iconsprite.js)
 
 Then the SVG filename will then be used as the symbol identifier and the icon can be used as a shortcode in your templates or as a direct `xlink:href`. This is where the magic happens!
 
 I expanded upon the `icon` type from Max and added `logo` which accepts `width` and `height` and `colorlogo` which accepts `width` , `height`and `fill` _(to add color to shape)_.
 
-Forked copy from Max’s repo before some more recent changes: [https://github.com/banuragaxioned/eleventastic/blob/master/utils/shortcodes.js](https://github.com/banuragaxioned/eleventastic/blob/master/utils/shortcodes.js)
+Forked copy from Max’s repo before some more recent changes: [https://github.com/imanuragbanerjee/eleventastic/blob/master/utils/shortcodes.js](https://github.com/imanuragbanerjee/eleventastic/blob/master/utils/shortcodes.js)
 
 ### In action
 
