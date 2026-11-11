@@ -2,6 +2,8 @@ import rss from "@astrojs/rss";
 import type { APIContext } from "astro";
 import { getCollection } from "astro:content";
 
+import { feedBase } from "@/lib/feed";
+
 export async function GET(context: APIContext) {
   const { site } = context;
   if (!site) {
@@ -14,11 +16,9 @@ export async function GET(context: APIContext) {
   );
 
   return await rss({
-    customData: `<language>en</language><atom:link href="${new URL("rss.xml", site).href}" rel="self" type="application/rss+xml" />`,
+    ...feedBase(site, "rss.xml"),
     title: "Anurag Banerjee",
     description: "Essays and articles by Anurag Banerjee.",
-    site,
-    xmlns: { atom: "http://www.w3.org/2005/Atom" },
     items: posts.map((post) => ({
       title: post.data.title,
       description: post.data.excerpt,

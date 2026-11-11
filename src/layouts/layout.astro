@@ -106,6 +106,18 @@ const navLinks = [
       title={SITE.name}
       href={new URL("rss.xml", Astro.site)}
     />
+    <link
+      rel="alternate"
+      type="application/rss+xml"
+      title={`Weeknotes · ${SITE.name}`}
+      href={new URL("weeknotes/rss.xml", Astro.site)}
+    />
+    <link
+      rel="alternate"
+      type="application/rss+xml"
+      title={`Zettles · ${SITE.name}`}
+      href={new URL("zettles/rss.xml", Astro.site)}
+    />
     {markdownUrl && (
       <link
         rel="alternate"
