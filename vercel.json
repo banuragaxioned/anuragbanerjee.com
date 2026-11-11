@@ -1,6 +1,53 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "trailingSlash": true,
+  "redirects": [
+    {
+      "source": "/github/",
+      "destination": "https://github.com/imanuragbanerjee",
+      "permanent": false
+    },
+    {
+      "source": "/x/",
+      "destination": "https://x.com/ianuragbanerjee",
+      "permanent": false
+    },
+    {
+      "source": "/twitter/",
+      "destination": "https://x.com/ianuragbanerjee",
+      "permanent": false
+    },
+    {
+      "source": "/linkedin/",
+      "destination": "https://linkedin.com/in/imanuragbanerjee",
+      "permanent": false
+    },
+    {
+      "source": "/instagram/",
+      "destination": "https://www.instagram.com/imanuragbanerjee",
+      "permanent": false
+    },
+    {
+      "source": "/rss/",
+      "destination": "/rss.xml",
+      "permanent": true
+    },
+    {
+      "source": "/feed/",
+      "destination": "/rss.xml",
+      "permanent": true
+    },
+    {
+      "source": "/feed.xml",
+      "destination": "/rss.xml",
+      "permanent": true
+    },
+    {
+      "source": "/blog/",
+      "destination": "/posts/",
+      "permanent": true
+    }
+  ],
   "headers": [
     {
       "source": "/(.*)",

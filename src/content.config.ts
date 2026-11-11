@@ -8,6 +8,7 @@ const posts = defineCollection({
     title: z.string().min(1, "Title is required"),
     excerpt: z.string().min(1, "Excerpt is required"),
     date: z.coerce.date(),
+    updated: z.coerce.date().optional(),
   }),
 });
 
@@ -17,6 +18,7 @@ const weeknotes = defineCollection({
     title: z.string().min(1, "Title is required"),
     excerpt: z.string().optional(),
     date: z.coerce.date(),
+    updated: z.coerce.date().optional(),
     canonical: z.url().optional(),
   }),
 });
@@ -27,6 +29,7 @@ const zettles = defineCollection({
     title: z.string().min(1, "Title is required"),
     excerpt: z.string().optional(),
     date: z.coerce.date().optional(),
+    updated: z.coerce.date().optional(),
   }),
 });
 

@@ -4,6 +4,7 @@ import { getCollection, render } from "astro:content";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import Layout from "@/layouts/layout.astro";
+import { formatDate } from "@/lib/dates";
 import { articleNode, breadcrumbNode, countWords, graph } from "@/lib/schema";
 
 export async function getStaticPaths() {
@@ -31,6 +32,7 @@ const schema = graph(
     description: note.data.excerpt,
     image: ogPath,
     path,
+    modified: note.data.updated,
     published: note.data.date,
     title: note.data.title,
     wordCount: countWords(note.body),
@@ -48,6 +50,7 @@ const schema = graph(
   description={note.data.excerpt}
   type="article"
   publishedTime={note.data.date.toISOString()}
+  modifiedTime={note.data.updated?.toISOString()}
   markdownUrl={`/weeknotes/${note.id}.md`}
   ogImage={ogPath}
   schema={schema}
@@ -57,9 +60,17 @@ const schema = graph(
       <h1 class="text-3xl font-semibold tracking-tight text-balance">
         {note.data.title}
       </h1>
-      <Badge variant="secondary" className="mt-4">
-        <time datetime={note.data.date.toISOString()}>{formattedDate}</time>
-      </Badge>
+      <div class="mt-4 flex flex-wrap items-center gap-x-3 gap-y-2">
+        <Badge variant="secondary">
+          <time datetime={note.data.date.toISOString()}>{formattedDate}</time>
+        </Badge>
+        {note.data.updated && <span class="text-sm text-muted-foreground">
+          Updated
+          <time datetime={note.data.updated.toISOString()}>
+            {formatDate(note.data.updated)}
+          </time>
+        </span>}
+      </div>
     </header>
     <div class="prose max-w-none prose-neutral dark:prose-invert">
       <Content />

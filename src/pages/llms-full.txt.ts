@@ -8,6 +8,7 @@ interface Doc {
   date?: Date;
   excerpt?: string;
   title: string;
+  updated?: Date;
   url: string;
 }
 
@@ -37,6 +38,7 @@ const render = (doc: Doc) =>
     "",
     `URL: ${doc.url}`,
     ...(doc.date ? [`Published: ${day(doc.date)}`] : []),
+    ...(doc.updated ? [`Updated: ${day(doc.updated)}`] : []),
     ...(doc.excerpt ? [`Summary: ${doc.excerpt}`] : []),
     "",
     demoteHeadings(doc.body.trim()),
@@ -71,6 +73,7 @@ export const GET: APIRoute = async () => {
         date: post.data.date,
         excerpt: post.data.excerpt,
         title: post.data.title,
+        updated: post.data.updated,
         url: absoluteUrl(`/posts/${post.id}/`),
       })),
     ),
@@ -81,6 +84,7 @@ export const GET: APIRoute = async () => {
         date: note.data.date,
         excerpt: note.data.excerpt,
         title: note.data.title,
+        updated: note.data.updated,
         url: absoluteUrl(`/weeknotes/${note.id}/`),
       })),
     ),
@@ -91,6 +95,7 @@ export const GET: APIRoute = async () => {
         date: zettle.data.date,
         excerpt: zettle.data.excerpt,
         title: zettle.data.title,
+        updated: zettle.data.updated,
         url: absoluteUrl(`/zettles/${zettle.id}/`),
       })),
     ),

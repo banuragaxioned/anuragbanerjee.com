@@ -3,6 +3,7 @@ import { getCollection, render } from "astro:content";
 
 import { Badge } from "@/components/ui/badge";
 import Layout from "@/layouts/layout.astro";
+import { formatDate } from "@/lib/dates";
 import { articleNode, breadcrumbNode, countWords, graph } from "@/lib/schema";
 
 export async function getStaticPaths() {
@@ -24,6 +25,7 @@ const schema = graph(
     description: zettle.data.excerpt,
     image: ogPath,
     path,
+    modified: zettle.data.updated,
     published: zettle.data.date,
     title: zettle.data.title,
     wordCount: countWords(zettle.body),
@@ -41,6 +43,7 @@ const schema = graph(
   description={zettle.data.excerpt}
   type="article"
   publishedTime={zettle.data.date?.toISOString()}
+  modifiedTime={zettle.data.updated?.toISOString()}
   markdownUrl={`/zettles/${zettle.id}.md`}
   ogImage={ogPath}
   schema={schema}
@@ -50,15 +53,21 @@ const schema = graph(
       <h1 class="text-3xl font-semibold tracking-tight text-balance">
         {zettle.data.title}
       </h1>
-      {zettle.data.date && <Badge variant="secondary" className="mt-4">
-        <time datetime={zettle.data.date.toISOString()}>
-          {zettle.data.date.toLocaleDateString("en-US", {
-            year: "numeric",
-            month: "long",
-            day: "numeric",
-          })}
-        </time>
-      </Badge>}
+      {(zettle.data.date || zettle.data.updated) && <div
+        class="mt-4 flex flex-wrap items-center gap-x-3 gap-y-2"
+      >
+        {zettle.data.date && <Badge variant="secondary">
+          <time datetime={zettle.data.date.toISOString()}>
+            {formatDate(zettle.data.date)}
+          </time>
+        </Badge>}
+        {zettle.data.updated && <span class="text-sm text-muted-foreground">
+          Updated
+          <time datetime={zettle.data.updated.toISOString()}>
+            {formatDate(zettle.data.updated)}
+          </time>
+        </span>}
+      </div>}
     </header>
     <div class="prose max-w-none prose-neutral dark:prose-invert">
       <Content />

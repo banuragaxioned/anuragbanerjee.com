@@ -45,3 +45,9 @@ Uses [Bun](https://bun.sh) as the package manager and script runner.
 | `bun run taze:fix`  | Update package.json and install                  |
 
 A [Lefthook](https://lefthook.dev) pre-commit hook lints and formats staged files.
+
+## Content and links
+
+- Posts, weeknotes and zettles take an optional `updated` date in their frontmatter. When set it appears on the page, in `article:modified_time` and in the structured data's `dateModified`; `date` stays the published date.
+- Feeds: `/rss.xml` (posts), `/weeknotes/rss.xml` and `/zettles/rss.xml`. A zettle without a `date` uses the timestamp in its id.
+- Short links (`/github`, `/x`, `/linkedin`, `/instagram`, `/rss`, `/blog`) are redirects in `vercel.json`. Keep the social ones in step with `socialLinks` in `src/lib/site.ts`.
