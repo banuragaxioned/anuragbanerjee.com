@@ -1,39 +1,39 @@
-// Fails the build if any route is rendered on demand or if a middleware exists.
-// The site has no CMS, so every route must be prerendered and served from the CDN; a stray
-// `cookies()`, `headers()` or `searchParams` read would quietly turn a page into a function.
-// Run after `next build`.
+// Run after `next build`. The site has no CMS, so every route must be prerendered and served from
+// the CDN. This fails if a route renders on demand (for example after a `cookies()`, `headers()` or
+// `searchParams` read) or if a middleware exists.
 import { readFileSync } from "node:fs";
 import { z } from "zod";
 
-const read = <T extends z.ZodType>(file: string, schema: T): z.infer<T> =>
-  schema.parse(JSON.parse(readFileSync(`.next/${file}`, "utf-8")));
+const records = z.record(z.string(), z.unknown());
 
-const prerender = read(
+function readManifest<T extends z.ZodType>(file: string, schema: T) {
+  return schema.parse(JSON.parse(readFileSync(`.next/${file}`, "utf-8")));
+}
+
+const prerender = readManifest(
   "prerender-manifest.json",
-  z.object({
-    dynamicRoutes: z.record(z.string(), z.unknown()),
-    routes: z.record(z.string(), z.unknown()),
-  }),
+  z.object({ dynamicRoutes: records, routes: records }),
 );
 const prerendered = new Set([
   ...Object.keys(prerender.routes),
   ...Object.keys(prerender.dynamicRoutes),
 ]);
 const appRoutes = Object.values(
-  read("app-path-routes-manifest.json", z.record(z.string(), z.string())),
+  readManifest(
+    "app-path-routes-manifest.json",
+    z.record(z.string(), z.string()),
+  ),
 );
-const middleware = Object.keys(
-  read(
-    "server/middleware-manifest.json",
-    z.object({ middleware: z.record(z.string(), z.unknown()) }),
-  ).middleware,
+const { middleware } = readManifest(
+  "server/middleware-manifest.json",
+  z.object({ middleware: records }),
 );
 
 const problems = [
   ...appRoutes
     .filter((route) => !prerendered.has(route))
     .map((route) => `${route} is rendered on demand`),
-  ...middleware.map((name) => `${name} runs as middleware`),
+  ...Object.keys(middleware).map((name) => `${name} runs as middleware`),
 ];
 
 if (problems.length > 0) {

@@ -16,26 +16,36 @@ const redirect = (source: string, destination: string, permanent = false) => ({
   source,
 });
 
-// Nothing here changes between deploys and Vercel purges its CDN on every deploy, so the CDN keeps
-// every page until the next one. These headers only set how long a browser may reuse a copy.
-// HTML keeps the default (revalidate every time) so an edit shows up on the next visit.
+// Vercel's CDN keeps every page until the next deploy, so these headers only decide how long a
+// browser may reuse a copy. HTML keeps the default (revalidate on each visit) so edits show up.
 const cacheControl = (value: string) => [{ key: "Cache-Control", value }];
 
-// Unhashed files cannot be immutable: reuse for a day, serve stale for a week while revalidating.
-const publicFiles = [
-  "favicon.ico",
-  "favicon.svg",
-  "apple-touch-icon.png",
-  "icon-192.png",
-  "icon-512.png",
-  "icon-maskable-512.png",
-  "manifest.webmanifest",
-  "og.png",
-];
+// Unhashed files cannot be immutable: one day, then a week of stale-while-revalidate.
 const publicFileCache = "public, max-age=86400, stale-while-revalidate=604800";
+const publicFiles = [
+  "/favicon.ico",
+  "/favicon.svg",
+  "/apple-touch-icon.png",
+  "/icon-192.png",
+  "/icon-512.png",
+  "/icon-maskable-512.png",
+  "/manifest.webmanifest",
+  "/og.png",
+];
 
-// Generated text and share cards: an hour is enough, feed readers and crawlers poll often.
+// Feeds, llms files, Markdown pages and share cards: one hour.
 const generatedCache = "public, max-age=3600, stale-while-revalidate=86400";
+const generatedFiles = [
+  "/index.md",
+  "/llms.txt",
+  "/llms-full.txt",
+  "/robots.txt",
+  "/rss.xml",
+  "/sitemap.xml",
+  "/weeknotes/rss.xml",
+  "/:section(posts|weeknotes)/:slug.md",
+  "/:section(posts|weeknotes)/:slug.og.png",
+];
 
 const config: NextConfig = {
   async headers() {
@@ -69,21 +79,14 @@ const config: NextConfig = {
         headers: [{ key: "X-Robots-Tag", value: "noindex" }],
         source: "/raw/:path*",
       },
-      {
+      ...publicFiles.map((source) => ({
         headers: cacheControl(publicFileCache),
-        source: `/:file(${publicFiles.map((file) => file.replace(".", "\\.")).join("|")})`,
-      },
-      ...[
-        "/index.md",
-        "/llms.txt",
-        "/llms-full.txt",
-        "/robots.txt",
-        "/rss.xml",
-        "/sitemap.xml",
-        "/weeknotes/rss.xml",
-        "/:section(posts|weeknotes)/:slug.md",
-        "/:section(posts|weeknotes)/:slug.og.png",
-      ].map((source) => ({ headers: cacheControl(generatedCache), source })),
+        source,
+      })),
+      ...generatedFiles.map((source) => ({
+        headers: cacheControl(generatedCache),
+        source,
+      })),
     ];
   },
   async redirects() {
@@ -129,8 +132,8 @@ const config: NextConfig = {
       fallback: [],
     };
   },
-  // The only /_next/image traffic is the post images. Their widths are capped to the 42rem column
-  // (at 1x and 2x) and one format, so each image is transformed twice, once, and cached for good.
+  // Only the post images go through /_next/image. Two widths (the 42rem column at 1x and 2x) and
+  // one format keep it to a few transformations, each cached for a year.
   images: {
     deviceSizes: [672, 1344],
     formats: ["image/webp"],
