@@ -1,10 +1,33 @@
-import { SITE } from "./site";
+import type { Collection } from "./content";
+import { Feed } from "feed";
 
-/** Options every feed shares: the language and the atom self-link validators ask for. */
-export function feedBase(site: URL, path: string) {
-  return {
-    customData: `<language>${SITE.language}</language><atom:link href="${new URL(path, site).href}" rel="self" type="application/rss+xml" />`,
-    site,
-    xmlns: { atom: "http://www.w3.org/2005/Atom" },
-  };
+import { getEntries } from "./content";
+import { absoluteUrl, SITE } from "./site";
+
+export function feedResponse(
+  collection: Collection,
+  options: { description: string; path: string; title: string },
+) {
+  const feed = new Feed({
+    copyright: `© ${new Date().getFullYear()} ${SITE.name}`,
+    description: options.description,
+    feedLinks: { rss: absoluteUrl(options.path) },
+    id: absoluteUrl("/"),
+    language: SITE.language,
+    link: absoluteUrl("/"),
+    title: options.title,
+  });
+  for (const entry of getEntries(collection)) {
+    const link = absoluteUrl(`/${collection}/${entry.id}/`);
+    feed.addItem({
+      date: entry.data.date,
+      description: entry.data.excerpt,
+      id: link,
+      link,
+      title: entry.data.title,
+    });
+  }
+  return new Response(feed.rss2(), {
+    headers: { "Content-Type": "application/xml; charset=utf-8" },
+  });
 }

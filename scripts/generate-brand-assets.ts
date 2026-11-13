@@ -9,17 +9,10 @@
 // The mark itself lives in src/lib/brand.ts.
 import { writeFileSync } from "node:fs";
 import path from "node:path";
-
 import sharp from "sharp";
 
-import {
-  INK,
-  MARK_BOX,
-  MARK_PATH,
-  MARK_RADIUS,
-  PAPER,
-} from "../src/lib/brand.ts";
-import { siteCardSvg } from "../src/lib/og-card.ts";
+import { INK, MARK_BOX, MARK_PATH, MARK_RADIUS, PAPER } from "../src/lib/brand";
+import { siteCardSvg } from "../src/lib/og-card";
 
 const publicDir = path.resolve(import.meta.dirname, "..", "public");
 const out = (name: string) => path.join(publicDir, name);
