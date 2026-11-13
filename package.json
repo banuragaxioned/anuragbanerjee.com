@@ -41,7 +41,7 @@
   },
   "devDependencies": {
     "@anuragbanerjee/oxfmt-config": "^0.1.1",
-    "@anuragbanerjee/oxlint-config": "^0.1.1",
+    "@anuragbanerjee/oxlint-config": "^0.1.2",
     "@anuragbanerjee/tsconfig": "^0.1.1",
     "@shadcn/lint": "^0.2.5",
     "@tailwindcss/postcss": "^4.3.5",
