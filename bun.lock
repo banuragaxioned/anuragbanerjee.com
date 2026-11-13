@@ -26,7 +26,7 @@
       },
       "devDependencies": {
         "@anuragbanerjee/oxfmt-config": "^0.1.1",
-        "@anuragbanerjee/oxlint-config": "^0.1.1",
+        "@anuragbanerjee/oxlint-config": "^0.1.2",
         "@anuragbanerjee/tsconfig": "^0.1.1",
         "@shadcn/lint": "^0.2.5",
         "@tailwindcss/postcss": "^4.3.5",
@@ -52,7 +52,7 @@
 
     "@anuragbanerjee/oxfmt-config": ["@anuragbanerjee/oxfmt-config@0.1.1", "", { "peerDependencies": { "oxfmt": ">=0.78.0 <1" } }, "sha512-k7oFARK/mmeOTIYHASTEpt0vfDEfxVdPAN8r66i8U+UqgobYnpWDnZrjBgVKmrBh1QKqnGdq7wHPLN0YITq4qg=="],
 
-    "@anuragbanerjee/oxlint-config": ["@anuragbanerjee/oxlint-config@0.1.1", "", { "dependencies": { "ultracite": "^8.2.0" }, "peerDependencies": { "@shadcn/lint": ">=0.2.5 <1", "oxlint": "^1.93.0", "oxlint-tsgolint": ">=7.0.2006" }, "optionalPeers": ["@shadcn/lint", "oxlint", "oxlint-tsgolint"] }, "sha512-hXQirNnrkR45kAYaa8Mb70HbsPcFb+RP0NThF2MudaWYbVyyQLUA+X+uTlRBz/jhWPs5Daoh97n1LrJ0YHmS7A=="],
+    "@anuragbanerjee/oxlint-config": ["@anuragbanerjee/oxlint-config@0.1.2", "", { "dependencies": { "ultracite": "^8.2.0" }, "peerDependencies": { "@shadcn/lint": ">=0.2.5 <1", "oxlint": "^1.93.0", "oxlint-tsgolint": ">=7.0.2006" }, "optionalPeers": ["@shadcn/lint", "oxlint", "oxlint-tsgolint"] }, "sha512-PCmATWmKdqeSerGuk7WbJ9zxotaQzmT5MCnmaWW16HbP8t2fzk1HeJQweEhytsKpcO5tNsyNxa2vq+udQprOyA=="],
 
     "@anuragbanerjee/tsconfig": ["@anuragbanerjee/tsconfig@0.1.1", "", { "peerDependencies": { "typescript": ">=6.0.0" } }, "sha512-AzI8l7u6jVjL3nRExDkaLflAUK5nSI/1b2qsAiO0plFmvvl5LdOEckR9+CVPVWltA3NJgvmEQZcEhgfYYgrQug=="],
 

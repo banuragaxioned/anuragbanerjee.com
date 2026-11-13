@@ -16,6 +16,27 @@ const redirect = (source: string, destination: string, permanent = false) => ({
   source,
 });
 
+// Unhashed files and generated text; HTML keeps the default so edits show up on the next visit.
+const cachedFiles = [
+  "/favicon.ico",
+  "/favicon.svg",
+  "/apple-touch-icon.png",
+  "/icon-192.png",
+  "/icon-512.png",
+  "/icon-maskable-512.png",
+  "/manifest.webmanifest",
+  "/og.png",
+  "/index.md",
+  "/llms.txt",
+  "/llms-full.txt",
+  "/robots.txt",
+  "/rss.xml",
+  "/sitemap.xml",
+  "/weeknotes/rss.xml",
+  "/:section(posts|weeknotes)/:slug.md",
+  "/:section(posts|weeknotes)/:slug.og.png",
+];
+
 const config: NextConfig = {
   async headers() {
     return [
@@ -48,6 +69,15 @@ const config: NextConfig = {
         headers: [{ key: "X-Robots-Tag", value: "noindex" }],
         source: "/raw/:path*",
       },
+      ...cachedFiles.map((source) => ({
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, max-age=86400, stale-while-revalidate=604800",
+          },
+        ],
+        source,
+      })),
     ];
   },
   async redirects() {
@@ -92,6 +122,12 @@ const config: NextConfig = {
       ],
       fallback: [],
     };
+  },
+  // The 42rem post column at 1x and 2x
+  images: {
+    deviceSizes: [672, 1344],
+    formats: ["image/webp"],
+    imageSizes: [],
   },
   trailingSlash: true,
 };
