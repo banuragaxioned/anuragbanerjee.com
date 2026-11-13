@@ -16,13 +16,8 @@ const redirect = (source: string, destination: string, permanent = false) => ({
   source,
 });
 
-// Vercel's CDN keeps every page until the next deploy, so these headers only decide how long a
-// browser may reuse a copy. HTML keeps the default (revalidate on each visit) so edits show up.
-const cacheControl = (value: string) => [{ key: "Cache-Control", value }];
-
-// Unhashed files cannot be immutable: one day, then a week of stale-while-revalidate.
-const publicFileCache = "public, max-age=86400, stale-while-revalidate=604800";
-const publicFiles = [
+// Unhashed files and generated text; HTML keeps the default so edits show up on the next visit.
+const cachedFiles = [
   "/favicon.ico",
   "/favicon.svg",
   "/apple-touch-icon.png",
@@ -31,11 +26,6 @@ const publicFiles = [
   "/icon-maskable-512.png",
   "/manifest.webmanifest",
   "/og.png",
-];
-
-// Feeds, llms files, Markdown pages and share cards: one hour.
-const generatedCache = "public, max-age=3600, stale-while-revalidate=86400";
-const generatedFiles = [
   "/index.md",
   "/llms.txt",
   "/llms-full.txt",
@@ -79,12 +69,13 @@ const config: NextConfig = {
         headers: [{ key: "X-Robots-Tag", value: "noindex" }],
         source: "/raw/:path*",
       },
-      ...publicFiles.map((source) => ({
-        headers: cacheControl(publicFileCache),
-        source,
-      })),
-      ...generatedFiles.map((source) => ({
-        headers: cacheControl(generatedCache),
+      ...cachedFiles.map((source) => ({
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, max-age=86400, stale-while-revalidate=604800",
+          },
+        ],
         source,
       })),
     ];
@@ -132,8 +123,7 @@ const config: NextConfig = {
       fallback: [],
     };
   },
-  // Only the post images go through /_next/image. Two widths (the 42rem column at 1x and 2x) and
-  // one format keep it to a few transformations, each cached for a year.
+  // The 42rem post column at 1x and 2x
   images: {
     deviceSizes: [672, 1344],
     formats: ["image/webp"],
